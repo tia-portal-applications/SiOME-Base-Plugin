@@ -1,0 +1,816 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
+    
+    
+      
+        <title>Interfaces special node classes interface - Getting started with SiOME plugin development</title>
+      
+    
+    
+
+  
+      <link rel="stylesheet" href="../../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+  <link rel="stylesheet" href="../../assets/stylesheets/code-main.bc82b6e239.css"/>
+
+
+    
+    
+  
+    
+
+    <link rel="preload" href="https://cdn.c2comms.cloud/fonts/professional/6.0/SiemensSans_Prof_Roman.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.c2comms.cloud/fonts/professional/6.0/SiemensSans_Prof_Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <style>:root{--md-text-font:"Siemens Sans Roman";--md-code-font:"monospace"}</style>
+  
+
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="dark" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-interfacesspecial-node-classesinterface" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+  <input class="md-toggle" data-md-toggle="main-nav" type="checkbox" id="main-nav-toggle" autocomplete="off"/>
+  
+
+
+<header class="md-header" data-md-component="header">
+
+  
+  <nav class="main-nav">
+    <div class="main-nav__inner-holder" id="siemens-header-container">
+      <a href="" class="logo">
+        <div class="logo__petrol">
+  <svg class="logo__mobile" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 80 16" role="img" aria-labelledby="siemens-logo-title-mobile">
+    <title id="siemens-logo-title-mobile">Siemens</title>
+    <image x="0" y="0" width="100px" height="20px" xlink:href="https://cdn.c2comms.cloud/images/logo-collection/2.1/sie-logo-petrol-rgb.svg"/>
+  </svg>
+  <svg class="logo__desktop" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 264 42" role="img" aria-labelledby="siemens-logo-title-desktop">
+    <title id="siemens-logo-title-desktop">Siemens</title>
+    <image x="0" y="0" width="264px" height="42px" xlink:href="https://cdn.c2comms.cloud/images/logo-collection/2.1/sie-logo-petrol-rgb.svg"/>
+  </svg>
+</div>
+<div class="logo__white">
+  <svg class="logo__mobile" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 80 16" role="img" aria-labelledby="siemens-logo-title-mobile-white">
+    <title id="siemens-logo-title-mobile-white">Siemens</title>
+    <image x="0" y="0" width="100px" height="20px" xlink:href="https://cdn.c2comms.cloud/images/logo-collection/2.1/sie-logo-white-rgb.svg"/>
+  </svg>
+  <svg class="logo__desktop" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 264 42" role="img" aria-labelledby="siemens-logo-title-desktop-white">
+    <title id="siemens-logo-title-desktop-white">Siemens</title>
+    <image x="0" y="0" width="264px" height="42px" xlink:href="https://cdn.c2comms.cloud/images/logo-collection/2.1/sie-logo-white-rgb.svg"/>
+  </svg>
+</div>
+      </a>
+      
+      <a style="display: none;"></a>
+    </div>
+
+    
+  </nav>
+  <div class="md-header__topic">
+    
+  </div>
+
+<div class="md-tabbar-search-container">
+
+  
+  
+    <label class="md-tabbar-search-container__title" for="__drawer">
+      
+          
+            
+          
+            
+          
+            
+          
+      
+    </label>
+
+    
+    <label class="md-icon md-header__button" for="__drawer">
+      <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M12,16.41406L5.29297,9.70703l1.41406-1.41406L12,13.58594l5.29297-5.29297l1.41406,1.41406L12,16.41406z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+    </label>
+  
+
+  
+    
+
+
+
+
+
+<nav class="md-tabs" aria-label="" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+          
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+          Home
+        </a>
+    </li>
+  
+
+  
+
+        
+          
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../preparations/" class="md-tabs__link">
+          Getting Started
+        </a>
+    </li>
+  
+
+  
+
+        
+          
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../interfaces/interfaces_siome_api_interface.ISiomeApi/" class="md-tabs__link">
+          API Documentation
+        </a>
+    </li>
+  
+
+  
+
+        
+      
+      
+    </ul>
+  </div>
+</nav>
+  
+  <div class="md-tabbar-search-container__search">
+    
+      
+        <label class="md-header__button md-icon" for="__search">
+          <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M21.99829,20.58423l-5.68665-5.68665C17.3656,13.54248,18,11.84564,18,10c0-4.41113-3.58887-8-8-8s-8,3.58887-8,8
+		s3.58887,8,8,8c1.84564,0,3.54248-0.6344,4.89758-1.68835l5.68665,5.68665L21.99829,20.58423z M10,16c-3.30859,0-6-2.69141-6-6
+		s2.69141-6,6-6s6,2.69141,6,6S13.30859,16,10,16z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+        </label>
+        
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M21.99829,20.58423l-5.68665-5.68665C17.3656,13.54248,18,11.84564,18,10c0-4.41113-3.58887-8-8-8s-8,3.58887-8,8
+		s3.58887,8,8,8c1.84564,0,3.54248-0.6344,4.89758-1.68835l5.68665,5.68665L21.99829,20.58423z M10,16c-3.30859,0-6-2.69141-6-6
+		s2.69141-6,6-6s6,2.69141,6,6S13.30859,16,10,16z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+        <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M14.29297,18.70703L7.58594,12l6.70703-6.70703l1.41406,1.41406L10.41406,12l5.29297,5.29297L14.29297,18.70703z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+
+    
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1"/>
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2"/>
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+
+    
+    
+
+  </div>
+</div>
+
+</header>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+  
+
+
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="" data-md-level="0">
+
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+  
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../used_software/" class="md-nav__link">
+        Used Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../further_information/" class="md-nav__link">
+        Further Information
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparations/" class="md-nav__link">
+        Preparation of the development environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_project/" class="md-nav__link">
+        Setting up your Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../using_the_api/" class="md-nav__link">
+        Using the SiOME API
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          API Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interfaces/interfaces_siome_api_interface.ISiomeApi/" class="md-nav__link">
+        API functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  
+  
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        
+
+
+<li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of contents" class="md-nav__link md-nav__link--primary">
+    Table of contents
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#interfaces" title="Interfaces" class="md-nav__link">
+    Interfaces
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+  
+                  
+
+
+<p><a href="../">Exports</a> / interfaces/special-node-classes.interface</p>
+<h1 id="module-interfacesspecial-node-classesinterface">Module: interfaces/special-node-classes.interface</h1>
+<h2 id="table-of-contents">Table of contents</h2>
+<h3 id="interfaces">Interfaces</h3>
+<ul>
+<li><a href="../../interfaces/interfaces_special_node_classes_interface.ISpecialNodeClasses/">ISpecialNodeClasses</a></li>
+</ul>
+
+
+
+
+
+                
+  
+
+
+  
+    
+  
+  <h2></h2>
+  <p class="md-community-button">
+    <a href="https://support.industry.siemens.com/cs/document/109755133/siemens-opc-ua-modeling-editor-(siome)?dti=0&lc=en-US" class="button" target="_blank">
+      <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M18.99781,5v11h-2V8.41406L6.70484,18.70703l-1.41406-1.41406L15.58375,7H7.99781V5H18.99781z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+      Get SiOME
+    </a>
+  </p>
+
+
+
+
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+
+  
+  
+
+  
+  
+
+  <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      
+<div class="footer-siemens">
+  <nav class="footer-siemens__links">
+    
+      <a class="footer-siemens__linksItem" href="https://github.com/tia-portal-applications/SiOME-Base-Plugin" target="_blank">Get the SiOME base-plugin-project on GitHub</a>
+    
+  </nav>
+  <div class="footer-siemens__legal">
+      <a class="footer-siemens__legalLink" href="http://www.siemens.com/corporate_info" target="_blank">Corporate Information</a>
+      <a class="footer-siemens__legalLink" href="http://www.siemens.com/privacy" target="_blank">Privacy Policy</a>
+      <a class="footer-siemens__legalLink" href="http://www.siemens.com/corp/en/index/terms_of_use.htm" target="_blank">Terms of Use</a>
+      
+  </div>
+</div>
+
+
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://code.siemens.com/code-ops/docs-theme/" target="_blank" rel="noopener">
+      MkDocs Siemens
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.footer", "page.toc", "content.code.copy"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

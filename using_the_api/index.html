@@ -1,0 +1,1635 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../setup_project/">
+      
+      
+        <link rel="next" href="../interfaces/interfaces_siome_api_interface.ISiomeApi/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
+    
+    
+      
+        <title>Using the SiOME API - Getting started with SiOME plugin development</title>
+      
+    
+    
+
+  
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+  <link rel="stylesheet" href="../assets/stylesheets/code-main.bc82b6e239.css"/>
+
+
+    
+    
+  
+    
+
+    <link rel="preload" href="https://cdn.c2comms.cloud/fonts/professional/6.0/SiemensSans_Prof_Roman.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.c2comms.cloud/fonts/professional/6.0/SiemensSans_Prof_Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <style>:root{--md-text-font:"Siemens Sans Roman";--md-code-font:"monospace"}</style>
+  
+
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="dark" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-the-siome-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+  <input class="md-toggle" data-md-toggle="main-nav" type="checkbox" id="main-nav-toggle" autocomplete="off"/>
+  
+
+
+<header class="md-header" data-md-component="header">
+
+  
+  <nav class="main-nav">
+    <div class="main-nav__inner-holder" id="siemens-header-container">
+      <a href="" class="logo">
+        <div class="logo__petrol">
+  <svg class="logo__mobile" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 80 16" role="img" aria-labelledby="siemens-logo-title-mobile">
+    <title id="siemens-logo-title-mobile">Siemens</title>
+    <image x="0" y="0" width="100px" height="20px" xlink:href="https://cdn.c2comms.cloud/images/logo-collection/2.1/sie-logo-petrol-rgb.svg"/>
+  </svg>
+  <svg class="logo__desktop" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 264 42" role="img" aria-labelledby="siemens-logo-title-desktop">
+    <title id="siemens-logo-title-desktop">Siemens</title>
+    <image x="0" y="0" width="264px" height="42px" xlink:href="https://cdn.c2comms.cloud/images/logo-collection/2.1/sie-logo-petrol-rgb.svg"/>
+  </svg>
+</div>
+<div class="logo__white">
+  <svg class="logo__mobile" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 80 16" role="img" aria-labelledby="siemens-logo-title-mobile-white">
+    <title id="siemens-logo-title-mobile-white">Siemens</title>
+    <image x="0" y="0" width="100px" height="20px" xlink:href="https://cdn.c2comms.cloud/images/logo-collection/2.1/sie-logo-white-rgb.svg"/>
+  </svg>
+  <svg class="logo__desktop" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 264 42" role="img" aria-labelledby="siemens-logo-title-desktop-white">
+    <title id="siemens-logo-title-desktop-white">Siemens</title>
+    <image x="0" y="0" width="264px" height="42px" xlink:href="https://cdn.c2comms.cloud/images/logo-collection/2.1/sie-logo-white-rgb.svg"/>
+  </svg>
+</div>
+      </a>
+      
+      <a style="display: none;"></a>
+    </div>
+
+    
+  </nav>
+  <div class="md-header__topic">
+    
+  </div>
+
+<div class="md-tabbar-search-container">
+
+  
+  
+    <label class="md-tabbar-search-container__title" for="__drawer">
+      
+          
+            
+          
+            
+              Getting Started
+            
+          
+            
+          
+      
+    </label>
+
+    
+    <label class="md-icon md-header__button" for="__drawer">
+      <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M12,16.41406L5.29297,9.70703l1.41406-1.41406L12,13.58594l5.29297-5.29297l1.41406,1.41406L12,16.41406z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+    </label>
+  
+
+  
+    
+
+
+
+
+
+<nav class="md-tabs" aria-label="" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+          
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+          Home
+        </a>
+    </li>
+  
+
+  
+
+        
+          
+
+
+
+  
+  
+    
+  
+
+
+
+
+  
+  
+
+  
+  
+    <li class="md-tabs__item">
+      <a href="../preparations/" class="md-tabs__link md-tabs__link--active">
+          Getting Started
+        </a>
+    </li>
+  
+
+  
+
+        
+          
+
+
+
+  
+  
+
+
+
+
+  
+  
+
+  
+  
+    <li class="md-tabs__item">
+      <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/" class="md-tabs__link">
+          API Documentation
+        </a>
+    </li>
+  
+
+  
+
+        
+      
+      
+    </ul>
+  </div>
+</nav>
+  
+  <div class="md-tabbar-search-container__search">
+    
+      
+        <label class="md-header__button md-icon" for="__search">
+          <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M21.99829,20.58423l-5.68665-5.68665C17.3656,13.54248,18,11.84564,18,10c0-4.41113-3.58887-8-8-8s-8,3.58887-8,8
+		s3.58887,8,8,8c1.84564,0,3.54248-0.6344,4.89758-1.68835l5.68665,5.68665L21.99829,20.58423z M10,16c-3.30859,0-6-2.69141-6-6
+		s2.69141-6,6-6s6,2.69141,6,6S13.30859,16,10,16z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+        </label>
+        
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M21.99829,20.58423l-5.68665-5.68665C17.3656,13.54248,18,11.84564,18,10c0-4.41113-3.58887-8-8-8s-8,3.58887-8,8
+		s3.58887,8,8,8c1.84564,0,3.54248-0.6344,4.89758-1.68835l5.68665,5.68665L21.99829,20.58423z M10,16c-3.30859,0-6-2.69141-6-6
+		s2.69141-6,6-6s6,2.69141,6,6S13.30859,16,10,16z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+        <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M14.29297,18.70703L7.58594,12l6.70703-6.70703l1.41406,1.41406L10.41406,12l5.29297,5.29297L14.29297,18.70703z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+
+    
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1"/>
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2"/>
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+
+    
+    
+
+  </div>
+</div>
+
+</header>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+  
+
+
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="" data-md-level="0">
+
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+  
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../used_software/" class="md-nav__link">
+        Used Software
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FAQ/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../further_information/" class="md-nav__link">
+        Further Information
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preparations/" class="md-nav__link">
+        Preparation of the development environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_project/" class="md-nav__link">
+        Setting up your Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Using the SiOME API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Using the SiOME API
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        
+
+
+<li class="md-nav__item">
+  <a href="#logging" title="Logging" class="md-nav__link md-nav__link--primary">
+    Logging
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#example-1" title="Example 1" class="md-nav__link">
+    Example 1
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#goal" title="Goal" class="md-nav__link">
+    Goal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#solution" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#result" title="Result" class="md-nav__link">
+    Result
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        
+
+
+<li class="md-nav__item">
+  <a href="#information-modeling" title="Information modeling" class="md-nav__link md-nav__link--primary">
+    Information modeling
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#example-1_1" title="Example 1" class="md-nav__link">
+    Example 1
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#goal_1" title="Goal" class="md-nav__link">
+    Goal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#solution_1" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#result_1" title="Result" class="md-nav__link">
+    Result
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#example-2" title="Example 2" class="md-nav__link">
+    Example 2
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#goal_2" title="Goal" class="md-nav__link">
+    Goal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#solution_2" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#result_2" title="Result" class="md-nav__link">
+    Result
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#example-3" title="Example 3" class="md-nav__link">
+    Example 3
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#goal_3" title="Goal" class="md-nav__link">
+    Goal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#solution_3" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#result_3" title="Result" class="md-nav__link">
+    Result
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          API Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/" class="md-nav__link">
+        API functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  
+  
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        
+
+
+<li class="md-nav__item">
+  <a href="#logging" title="Logging" class="md-nav__link md-nav__link--primary">
+    Logging
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#example-1" title="Example 1" class="md-nav__link">
+    Example 1
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#goal" title="Goal" class="md-nav__link">
+    Goal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#solution" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#result" title="Result" class="md-nav__link">
+    Result
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        
+
+
+<li class="md-nav__item">
+  <a href="#information-modeling" title="Information modeling" class="md-nav__link md-nav__link--primary">
+    Information modeling
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#example-1_1" title="Example 1" class="md-nav__link">
+    Example 1
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#goal_1" title="Goal" class="md-nav__link">
+    Goal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#solution_1" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#result_1" title="Result" class="md-nav__link">
+    Result
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#example-2" title="Example 2" class="md-nav__link">
+    Example 2
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#goal_2" title="Goal" class="md-nav__link">
+    Goal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#solution_2" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#result_2" title="Result" class="md-nav__link">
+    Result
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#example-3" title="Example 3" class="md-nav__link">
+    Example 3
+  </a>
+
+  
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#goal_3" title="Goal" class="md-nav__link">
+    Goal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#solution_3" title="Solution" class="md-nav__link">
+    Solution
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#result_3" title="Result" class="md-nav__link">
+    Result
+  </a>
+
+  
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+  
+                  
+
+
+<h1 id="using-the-siome-api">Using the SiOME API</h1>
+<p>In the hello-world component of the siome plugin base project, the SiOME Plugin API is already correctly imported and instantiated.
+To make use of the different <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/">API functions</a>, use the object <code>siomeApi</code> provided by the getter.</p>
+<h2 id="logging">Logging</h2>
+<p>The SiOME API gives you access to the logging interface of SiOME. The log area does not display all log messages line by line, but instead displays them depending on their origin in a tree like structure. The root is called a log node, the leaves are the single log messages. In order to use the log interface, there has to be a log node for your plugin. You can create a log node with the following line of code:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">createLogNode</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;name&gt;&gt;&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>With the placeholder <code>&lt;&lt;name&gt;&gt;</code>, you define the displayed name of the node in the log output area.</p>
+<p>You can output a log message with the following code:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">newLogEntry</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;logEntry&gt;&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&lt;&lt;type&gt;&gt;&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>For the placeholder <code>&lt;&lt;log entry&gt;&gt;</code>, you enter a log message and for <code>&lt;&lt;type&gt;&gt;</code> you enter one of three log types:</p>
+<ul>
+<li><code>info</code></li>
+<li><code>warning</code></li>
+<li><code>error</code></li>
+</ul>
+<h3 id="example-1">Example 1</h3>
+<h4 id="goal">Goal</h4>
+<p>In this example we will add a new button to the plugin that creates a new log node and different log message leaf nodes.</p>
+<h4 id="solution">Solution</h4>
+<div class="highlight"><span class="filename">hello-world.component.html</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos="2 "></span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">style</span><span class="o">=</span><span class="s2">&quot;width: 120px; margin: 8px;&quot;</span><span class="w"> </span><span class="nx">mat</span><span class="o">-</span><span class="nx">raised</span><span class="o">-</span><span class="nx">button</span><span class="w"> </span><span class="nx">color</span><span class="o">=</span><span class="s2">&quot;primary&quot;</span><span class="w"> </span><span class="p">(</span><span class="nx">click</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;addLogs()&quot;</span><span class="o">&gt;</span>
+<span class="linenos" data-linenos="3 "></span><span class="nx">Add</span><span class="w"> </span><span class="nx">logs</span>
+<span class="linenos" data-linenos="4 "></span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+<span class="linenos" data-linenos="5 "></span><span class="c1">//...</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">hello-world.component.ts</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos="2 "></span><span class="nx">addLogs</span><span class="p">(){</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">createLogNode</span><span class="p">(</span><span class="s2">&quot;example log node&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">newLogEntry</span><span class="p">(</span><span class="s2">&quot;This log message has the type info&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">newLogEntry</span><span class="p">(</span><span class="s2">&quot;This log message has the type warning&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="6 "></span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">newLogEntry</span><span class="p">(</span><span class="s2">&quot;This log message has the type error&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="c1">//...</span>
+</code></pre></div>
+<h4 id="result">Result</h4>
+<p>After compiling and reloading the plugin, a new button got added to the GUI:</p>
+<p><img alt="log output gui" src="../log_example_gui.png" /></p>
+<p>Clicking the button produces the following log output:</p>
+<p><img alt="log output example" src="../log_output_task.png" /></p>
+<h2 id="information-modeling">Information modeling</h2>
+<p>By using the SiOME API methods, you are able to add, change and remove nodes from the information model displayed in the editor view. This allows you to automate lots of different tasks and steps of manual modeling through programming.</p>
+<h3 id="example-1_1">Example 1</h3>
+<h4 id="goal_1">Goal</h4>
+<p>In this example we will add a new button to the plugin that adds an Object inside the <em>Objects</em> folder of our information model. This folder is already defined by the OPC UA standard and has the node id <code>ns=0;i=85</code>. Folders group nodes by referencing them with an <em>Organizes</em> reference. This reference is also defined by the OPC UA standard and has the node id <code>ns=0;i=35</code>.</p>
+<h4 id="solution_1">Solution</h4>
+<p>We use the <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addchild">addChild()</a> method to add a node to the information model. The node to be added can be parameterized by passing a <em>Parameter</em> object. The type of this parameter object varies depending on the <a href="../enums/enums_node_classes.NodeClass/">NodeClass</a>. For example, to create a node of the <a href="../enums/enums_node_classes.NodeClass/#object">Object NodeClass</a>, you pass <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addchild">addChild()</a> an object of the type <a href="../interfaces/interfaces_add_object_parameter.IAddObjectParameter/">IAddObjectParameter</a>. For this object, the following properties must be specified:</p>
+<ul>
+<li><a href="../interfaces/interfaces_add_object_parameter.IAddObjectParameter/#name">name</a> Name of your node</li>
+<li><a href="../interfaces/interfaces_add_object_parameter.IAddObjectParameter/#namespaceindex">namespaceIndex</a> Index of the namespace to which you want to add your node</li>
+<li><a href="../interfaces/interfaces_add_object_parameter.IAddObjectParameter/#nodeclass">nodeClass</a> NodeClass of your node as an <a href="../enums/enums_node_classes.NodeClass/">Enumeration</a></li>
+<li><a href="../interfaces/interfaces_add_object_parameter.IAddObjectParameter/#referencetype">referenceType</a> Node id of the reference between your node and the parent node (set with <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addchild">parentNodeId</a>)</li>
+<li><a href="../interfaces/interfaces_add_object_parameter.IAddObjectParameter/#typedefinition">typeDefinition</a> TypeDefinition on which the instance of your node will be based.</li>
+</ul>
+<p>First we create a new function and an <a href="../interfaces/interfaces_add_object_parameter.IAddObjectParameter/">IAddObjectParameter</a> object after importing the corresponding object interface. To be able to refer to the node class by name, we also import the <a href="../enums/enums_node_classes.NodeClass/">NodeClass</a> enumeration:</p>
+<div class="highlight"><span class="filename">hello-world.component.ts</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NodeClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/enums/node-classes&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IAddObjectParameter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/add-object-parameter&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="nx">addNode</span><span class="p">(){</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">   </span><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="kt">IAddObjectParameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">   </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;My Custom Node&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">   </span><span class="nx">nodeClass</span><span class="o">:</span><span class="w"> </span><span class="kt">NodeClass.Object</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">   </span><span class="nx">referenceType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ns=0;i=35&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">   </span><span class="nx">namespaceIndex</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">   </span><span class="nx">typeDefinition</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ns=0;i=58&quot;</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">   </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="c1">//...</span>
+</code></pre></div>
+<p>In addition to the OPC UA base namespace, which always has namespace index 0, we will now use <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#createnamespaceimplicit">createNamespaceImplicit()</a> to create our own namespace, into which we will add our node instances for the rest of this guide. For a new empty nodeset this namespace will have the namespace index 1 accordingly. To avoid creating the same namespace multiple times, we first check whether it already exists in the namespace array of the nodeset by using the method <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#getnamespacearray">getNamespaceArray()</a>.</p>
+<p>Then we call the <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addchild">addChild()</a> method. Because <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addchild">addChild()</a> returns a promise, we also mark our addNode() function as async. If the node is added correctly, an <a href="../interfaces/interfaces_opc_reference_interface.IOpcReference/">IOpcReference</a> is returned, and if an error occurs, an <a href="../interfaces/interfaces_siome_api_error_interface.ISiomeApiError/">ISiomeApiError</a> is returned instead.</p>
+<div class="highlight"><span class="filename">hello-world.component.ts</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NodeClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/enums/node-classes&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IAddObjectParameter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/add-object-parameter&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">async</span><span class="w"> </span><span class="nx">addNode</span><span class="p">(){</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="kt">IAddObjectParameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;My Custom Node&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="nx">nodeClass</span><span class="o">:</span><span class="w"> </span><span class="kt">NodeClass.Object</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="nx">referenceType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ns=0;i=35&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">      </span><span class="nx">namespaceIndex</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">      </span><span class="nx">typeDefinition</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ns=0;i=58&quot;</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">getNamespaceArray</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;my-new-namespace&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">createNamespaceImplicit</span><span class="p">(</span><span class="s2">&quot;my-new-namespace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">returnValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">addChild</span><span class="p">(</span><span class="s2">&quot;ns=0;i=85&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="c1">//...</span>
+</code></pre></div>
+<p>Lastly we add a button that calls the new function:</p>
+<div class="highlight"><span class="filename">hello-world.component.html</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>//...
+<span class="linenos" data-linenos=" 2 "></span><span class="p">&lt;</span><span class="nt">button</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="na">style</span><span class="o">=</span><span class="s">&quot;width: 120px; margin: 8px;&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span>  <span class="na">mat-raised-button</span>
+<span class="linenos" data-linenos=" 5 "></span>  <span class="na">color</span><span class="o">=</span><span class="s">&quot;primary&quot;</span>
+<span class="linenos" data-linenos=" 6 "></span>  <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">addNode</span><span class="err">()&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span>  Add new Node
+<span class="linenos" data-linenos=" 9 "></span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="linenos" data-linenos="10 "></span>//...
+</code></pre></div>
+<h4 id="result_1">Result</h4>
+<p>After compiling and reloading the plugin, a new button got added to the GUI:</p>
+<p><img alt="addChild Button" src="../addChild_example_gui.png" /></p>
+<p>Clicking the button results in a newly added node called <em>MyCustomNode</em> and can be found under the browse path <code>Root/Objects/MyCustomNode</code>.</p>
+<p><img alt="addChild Result" src="../addChild_example_result.png" /></p>
+<h3 id="example-2">Example 2</h3>
+<h4 id="goal_2">Goal</h4>
+<p>In this example we create a node of the <em>Method</em> node class with input arguments by using the <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addmethod">addMethod()</a> function, which can create OPC UA methods with input and output arguments.</p>
+<h4 id="solution_2">Solution</h4>
+<p>For our example, we add a new function to our component. There we create an array of <a href="../interfaces/interfaces_method_arguments_interface.IMethodArguments/">IMethodArguments</a>, which contains the input arguments we want to define for the OPC UA method to be created.</p>
+<div class="highlight"><span class="filename">hello-world.component.ts</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IMethodArguments</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/method-arguments.interface&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">async</span><span class="w"> </span><span class="nx">addMethodNode</span><span class="p">(){</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">inputArgs</span><span class="o">:</span><span class="w"> </span><span class="kt">IMethodArguments</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">      </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="nx">valueRank</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="nx">dataType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ns=0;i=24&#39;</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}]</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="c1">//...</span>
+</code></pre></div>
+<p>Then we call <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addmethod">addMethod()</a> and fill the parameters for the parentNodeId, the name of the method, the namespace index as well as the method input and output arguments.</p>
+<div class="highlight"><span class="filename">hello-world.component.ts</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IMethodArguments</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/method-arguments.interface&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">async</span><span class="w"> </span><span class="nx">addMethodNode</span><span class="p">(){</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">inputArgs</span><span class="o">:</span><span class="w"> </span><span class="kt">IMethodArguments</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">      </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberArg1&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="nx">valueRank</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="nx">dataType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ns=0;i=24&#39;</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}]</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">getNamespaceArray</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;my-new-namespace&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">createNamespaceImplicit</span><span class="p">(</span><span class="s2">&quot;my-new-namespace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">addMethod</span><span class="p">(</span><span class="s2">&quot;ns=0;i=85&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Method1&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w">  </span><span class="nx">inputArgs</span><span class="p">,</span><span class="w"> </span><span class="p">[])</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span><span class="c1">//...</span>
+</code></pre></div>
+<p>Lastly we add a button that calls the new function:</p>
+<div class="highlight"><span class="filename">hello-world.component.html</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>//...
+<span class="linenos" data-linenos=" 2 "></span><span class="p">&lt;</span><span class="nt">button</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="na">style</span><span class="o">=</span><span class="s">&quot;width: 120px; margin: 8px;&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span>  <span class="na">mat-raised-button</span>
+<span class="linenos" data-linenos=" 5 "></span>  <span class="na">color</span><span class="o">=</span><span class="s">&quot;primary&quot;</span>
+<span class="linenos" data-linenos=" 6 "></span>  <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">addMethodNode</span><span class="err">()&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span>  Add new MethodNode
+<span class="linenos" data-linenos=" 9 "></span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="linenos" data-linenos="10 "></span>//...
+</code></pre></div>
+<h4 id="result_2">Result</h4>
+<p>After compiling and reloading the plugin, a new button got added to the GUI:</p>
+<p><img alt="addMethod Button" src="../addMethod_example_gui.png" /></p>
+<p>Clicking the button results in a newly added method called <em>Method1</em> and can be found under the browse path <code>Root/Objects/Method1</code>.</p>
+<p><img alt="addMethod Result" src="../addMethod_example_result.png" /></p>
+<h3 id="example-3">Example 3</h3>
+<h4 id="goal_3">Goal</h4>
+<p>In this example we create a custom structured datatype.</p>
+<h4 id="solution_3">Solution</h4>
+<p>In a new function, we use <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addchild">addChild()</a> like previously in <a href="#example-1_1">Example 1</a>, to add a new datatype to the information model.
+In comparison to the first example, we use the <em>HasSubtype</em> (NodeId <code>ns=0;i=45</code>) reference to inherit from the datatype <em>Structure</em> (NodeId <code>ns=0;i=22</code>). Both the reference and the datatype are defined by the OPC UA standard.</p>
+<div class="highlight"><span class="filename">hello-world.component.ts</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IAddDataTypeParameter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/add-data-type-parameter&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IOpcReference</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/opc-reference.interface&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">async</span><span class="w"> </span><span class="nx">addStruct</span><span class="p">(){</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="kt">IAddDataTypeParameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">      </span><span class="nx">isAbstract</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MyStruct&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="nx">namespaceIndex</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">      </span><span class="nx">nodeClass</span><span class="o">:</span><span class="w"> </span><span class="kt">NodeClass.DataType</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">      </span><span class="nx">referenceType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ns=0;i=45&#39;</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">getNamespaceArray</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;my-new-namespace&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">createNamespaceImplicit</span><span class="p">(</span><span class="s2">&quot;my-new-namespace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">returnValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">addChild</span><span class="p">(</span><span class="s2">&quot;ns=0;i=22&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">)</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">IOpcReference</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">returnedChildNodeId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">returnValue</span><span class="p">.</span><span class="nx">target</span><span class="p">))</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="c1">//...</span>
+</code></pre></div>
+<p>After creating the <em>MyStruct</em> datatype, we can use the <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/#addstructureitem">addStructureItem()</a> method, to populate the datatype with items.
+The item to be added gets parametrized by passing an <a href="../interfaces/interfaces_add_structure_item_parameter_interface.IAddStructurItemParameter/">IAddStructurItemParameter</a> object:</p>
+<div class="highlight"><span class="filename">hello-world.component.ts</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IAddDataTypeParameter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/add-data-type-parameter&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IOpcReference</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/opc-reference.interface&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IAddStructurItemParameter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;src/app/shared/public-api/interfaces/add-structure-item-parameter.interface&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">//...</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="k">async</span><span class="w"> </span><span class="nx">addStruct</span><span class="p">(){</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="kt">IAddDataTypeParameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">       </span><span class="nx">isAbstract</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">       </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MyStruct&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">       </span><span class="nx">namespaceIndex</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">       </span><span class="nx">nodeClass</span><span class="o">:</span><span class="w"> </span><span class="kt">NodeClass.DataType</span><span class="p">,</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">       </span><span class="nx">referenceType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ns=0;i=45&#39;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">     </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">getNamespaceArray</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;my-new-namespace&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">       </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">createNamespaceImplicit</span><span class="p">(</span><span class="s2">&quot;my-new-namespace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">     </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">     </span><span class="kd">const</span><span class="w"> </span><span class="nx">returnValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">addChild</span><span class="p">(</span><span class="s2">&quot;ns=0;i=22&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">)</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">IOpcReference</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">     </span><span class="kd">const</span><span class="w"> </span><span class="nx">returnedChildNodeId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">returnValue</span><span class="p">.</span><span class="nx">target</span><span class="p">))</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">     </span><span class="kd">const</span><span class="w"> </span><span class="nx">itemParam1</span><span class="o">:</span><span class="w"> </span><span class="kt">IAddStructurItemParameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">       </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;item 1&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">       </span><span class="nx">dataType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ns=0;i=26&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">       </span><span class="nx">isOptional</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">       </span><span class="nx">valueRank</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">       </span><span class="nx">allowSubTypes</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">     </span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">     </span><span class="kd">const</span><span class="w"> </span><span class="nx">itemParam2</span><span class="o">:</span><span class="w"> </span><span class="kt">IAddStructurItemParameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">       </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;item 2&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">       </span><span class="nx">dataType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ns=0;i=26&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">       </span><span class="nx">isOptional</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">       </span><span class="nx">valueRank</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">       </span><span class="nx">allowSubTypes</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">     </span><span class="p">}</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">     </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">addStructureItem</span><span class="p">(</span><span class="nx">returnedChildNodeId</span><span class="p">,</span><span class="w"> </span><span class="nx">itemParam1</span><span class="p">)</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">     </span><span class="k">this</span><span class="p">.</span><span class="nx">siomeApi</span><span class="p">.</span><span class="nx">addStructureItem</span><span class="p">(</span><span class="nx">returnedChildNodeId</span><span class="p">,</span><span class="w"> </span><span class="nx">itemParam2</span><span class="p">)</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">   </span><span class="p">}</span>
+<span class="linenos" data-linenos="39 "></span><span class="c1">//...</span>
+</code></pre></div>
+<p>Lastly we add a button that calls the new function:</p>
+<div class="highlight"><span class="filename">hello-world.component.html</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>//...
+<span class="linenos" data-linenos=" 2 "></span><span class="p">&lt;</span><span class="nt">button</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="na">style</span><span class="o">=</span><span class="s">&quot;width: 120px; margin: 8px;&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span>  <span class="na">mat-raised-button</span>
+<span class="linenos" data-linenos=" 5 "></span>  <span class="na">color</span><span class="o">=</span><span class="s">&quot;primary&quot;</span>
+<span class="linenos" data-linenos=" 6 "></span>  <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">addStruct</span><span class="err">()&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span>  Add new Structure
+<span class="linenos" data-linenos=" 9 "></span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="linenos" data-linenos="10 "></span>//...
+</code></pre></div>
+<h4 id="result_3">Result</h4>
+<p>After compiling and reloading the plugin, a new button got added to the GUI:</p>
+<p><img alt="addStruct Button" src="../addStruct_example_gui.png" /></p>
+<p>Clicking the Button results in a newly added Structure subtype called <em>MyStruct</em> and can be found under the browse path <code>Root/Types/DataTypes/BaseDataType/Structure/MyStruct</code>.</p>
+<p><img alt="addStruct Result" src="../addStruct_example_result.png" /></p>
+
+
+
+
+
+                
+  
+
+
+  
+    
+  
+  <h2></h2>
+  <p class="md-community-button">
+    <a href="https://support.industry.siemens.com/cs/document/109755133/siemens-opc-ua-modeling-editor-(siome)?dti=0&lc=en-US" class="button" target="_blank">
+      <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M18.99781,5v11h-2V8.41406L6.70484,18.70703l-1.41406-1.41406L15.58375,7H7.99781V5H18.99781z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+      Get SiOME
+    </a>
+  </p>
+
+
+
+
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+
+  
+  
+
+  
+  
+
+  <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../setup_project/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setting up your Project" rel="prev">
+            <div class="md-footer__button md-icon">
+              <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M14.29297,18.70703L7.58594,12l6.70703-6.70703l1.41406,1.41406L10.41406,12l5.29297,5.29297L14.29297,18.70703z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Setting up your Project
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../interfaces/interfaces_siome_api_interface.ISiomeApi/" class="md-footer__link md-footer__link--next" aria-label="Next: API functions" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                API functions
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 24 24" overflow="visible" xml:space="preserve">
+<g id="Bounding_box">
+	<rect fill="none" width="24" height="24"/>
+</g>
+<g id="Icon">
+	<path d="M9.70703,18.70703l-1.41406-1.41406L13.58594,12L8.29297,6.70703l1.41406-1.41406L16.41406,12L9.70703,18.70703z"/>
+</g>
+<g id="Kommentare" display="none">
+</g>
+</svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      
+<div class="footer-siemens">
+  <nav class="footer-siemens__links">
+    
+      <a class="footer-siemens__linksItem" href="https://github.com/tia-portal-applications/SiOME-Base-Plugin" target="_blank">Get the SiOME base-plugin-project on GitHub</a>
+    
+  </nav>
+  <div class="footer-siemens__legal">
+      <a class="footer-siemens__legalLink" href="http://www.siemens.com/corporate_info" target="_blank">Corporate Information</a>
+      <a class="footer-siemens__legalLink" href="http://www.siemens.com/privacy" target="_blank">Privacy Policy</a>
+      <a class="footer-siemens__legalLink" href="http://www.siemens.com/corp/en/index/terms_of_use.htm" target="_blank">Terms of Use</a>
+      
+  </div>
+</div>
+
+
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://code.siemens.com/code-ops/docs-theme/" target="_blank" rel="noopener">
+      MkDocs Siemens
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.footer", "page.toc", "content.code.copy"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
