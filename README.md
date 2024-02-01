@@ -4,7 +4,7 @@
 
 This Angular project will help you to get started with SiOME plugin development.
 
-| :page_facing_up: For more information on this project and the SiOME API, read the [SiOME Getting Started Guide](). :page_facing_up: |
+| :page_facing_up: For more information on this project and the SiOME API, read the [SiOME Getting Started Guide](https://tia-portal-applications.github.io/SiOME-Base-Plugin/). :page_facing_up: |
 |-------------------------------------------------------------------------------------------------------------------------------------|
 
 ## Quickstart
