@@ -1,4 +1,4 @@
 export interface IImportFile {
-  path: string;
-  data: string;
+    path: string;
+    data: string;
 }

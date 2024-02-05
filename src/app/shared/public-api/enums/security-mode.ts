@@ -1,6 +1,6 @@
 export enum SecurityMode {
-  INVALID,
-  NONE,
-  SIGN,
-  SIGNANDENCRYPT,
+    INVALID,
+    NONE,
+    SIGN,
+    SIGNANDENCRYPT
 }

@@ -1,6 +1,6 @@
-import { IAddNodeParameter } from './add-node-parameter.interface';
+import { IAddNodeParameter } from "./add-node-parameter.interface";
 
 export interface IAddVariableTypeParameter extends IAddNodeParameter {
-  dataType: string;
-  isAbstract: boolean;
+    dataType: string;
+    isAbstract: boolean;
 }
