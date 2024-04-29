@@ -1,6 +1,6 @@
 export declare enum NodeIdType {
-    NUMERIC = 1,
-    STRING = 2,
-    GUID = 3,
-    BYTESTRING = 4
+  NUMERIC = 1,
+  STRING = 2,
+  GUID = 3,
+  BYTESTRING = 4,
 }

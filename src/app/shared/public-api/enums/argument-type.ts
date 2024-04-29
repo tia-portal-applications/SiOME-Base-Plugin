@@ -1,4 +1,4 @@
 export enum ArgumentType {
-    InputArgument = 0,
-    OutputArgument = 1
+    InputArgument= 0,
+    OutputArgument= 1
 }

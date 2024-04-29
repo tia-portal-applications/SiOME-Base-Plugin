@@ -1,8 +1,8 @@
 export enum SupportedFileFormat {
-    AML,
-    XML,
-    TTL,
-    PEM,
-    DER,
-    ALL
+  AML,
+  XML,
+  TTL,
+  PEM,
+  DER,
+  ALL,
 }

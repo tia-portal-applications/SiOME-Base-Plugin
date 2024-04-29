@@ -1,6 +1,5 @@
 import { SupportedFileFormat } from "../enums/supported-file-format";
 import { ModellingRules } from "../enums/modelling-rules";
-import { ISiomeApiError } from "./siome-api-error.interface";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import { INamespaceChange } from "./namespace-change.interface";
 import { IImportFile } from "./import-file.interface";
@@ -38,21 +37,22 @@ export interface ISiomeApi {
      * Activates or deactivates the type defined reference
      * @category OPC UA
      * @param sourceId The NodeId of the source of the TypeReference
-     * @param targetId  The BrowseName of the target of the TypeReference
+     * @param targetBrowseName
      * @param referenceType  The NodeId of the ReferenceType of the TypeReference
      * @returns the status of the isActivated property
+     * @throws ISiomeApiError
      */
     activateTypeReference(
         sourceId: string,
         targetBrowseName: string,
         referenceType?: string
-    ): Promise<boolean | ISiomeApiError>;
+    ): Promise<boolean>;
 
     /**
      * Return a string array containing the current namespace uris
      * @category OPC UA
      */
-    getNamespaceArray(): string[];
+    getNamespaceArray(): Promise<string[]>;
 
     /**
      * Check whether a specific namespace is available and loaded in SiOME.
@@ -60,20 +60,21 @@ export interface ISiomeApi {
      * @param namespaceUri Entry to be searched for e.g. "http://opcfoundation.org/UA/".
      * @returns
      */
-    checkNamespaceAvailable(namespaceUri: string): boolean;
+    checkNamespaceAvailable(namespaceUri: string): Promise<boolean>;
 
     /**
      * Returns the current namespace index.
      * @category OPC UA
+     * @throws ISiomeApiError
      */
-    currentNamespaceIndex(): number | ISiomeApiError;
+    currentNamespaceIndex(): Promise<number>;
 
     /**
-     * sets the provided namespaceindex or namespaceUri as current namespace
-     * @param namespace namespaceindex or namespaceUri
+     * sets the provided namespace index or namespaceUri as current namespace
+     * @param namespace namespace index or namespaceUri
      * @category General
      */
-    setCurrentNamespace(namespace: number | string): void;
+    setCurrentNamespace(namespace: number | string): Promise<void>;
 
     /**
      * Open a dialog to unlock or add a new namespace.
@@ -86,7 +87,7 @@ export interface ISiomeApi {
      * @param params The definition of the new structure item.
      * @category OPC UA
      */
-    addStructureItem(parentId: string, params: IAddStructurItemParameter): void;
+    addStructureItem(parentId: string, params: IAddStructurItemParameter): Promise<void>;
 
     /**
      * Add a new namespace with a given URI and version
@@ -102,42 +103,44 @@ export interface ISiomeApi {
      * @param parentId Search under this parent nodeId inside the information model.
      * @param searchTerm The BrowseName with or without its NamespaceIndex (e.g.: "1:BrowseName", "BrowseName"). If the NamespaceIndex is not provided, the method returns the first node with the given BrowseName.
      * @returns The IOpcNode with this BrowseName or SiOMEApiError.
+     * @throws ISiomeApiError
      */
-    searchNode(parentId: string, searchTerm: string): IOpcNode | ISiomeApiError;
+    searchNode(parentId: string, searchTerm: string): Promise<IOpcNode>;
 
     /**
      * Search for the given nodeId within all available nodes in the information model.
      * @category OPC UA
      * @param nodeId
+     * @throws ISiomeApiError
      */
-    getOpcNode(nodeId: string): IOpcNode | ISiomeApiError;
+    getOpcNode(nodeId: string): Promise<IOpcNode>;
 
     /**
      * Add a new entry to the current information model.
      * @category OPC UA
      * @param parentNodeId Add the new entry below this parent node.
      * @param params The parameters for the newly created node.
-     * @param updateReferences Should the references be updated after creation.
      * @returns The newly created IOpcReference or SiOMEApiError.
      */
     addChild(
         parentNodeId: string,
         params:
-            | IAddVariableParameter
-            | IAddVariableTypeParameter
-            | IAddObjectParameter
-            | IAddObjectTypeParameter
-            | IAddReferenceTypeParameter
-            | IAddDataTypeParameter
-    ): Promise<IOpcReference | ISiomeApiError>;
+            IAddVariableParameter |
+            IAddVariableTypeParameter |
+            IAddObjectParameter |
+            IAddObjectTypeParameter |
+            IAddReferenceTypeParameter |
+            IAddDataTypeParameter
+    ): Promise<IOpcReference>;
 
     /**
      * Add a new variable type of a given DataType to the current information model.
      * @category OPC UA
      * @param dataTypeNodeId The NodeId of the DataType from which a VariableType should be created.
      * @returns The newly created VariableType or SiOMEApiError.
+     * @throws ISiomeApiError
      */
-    createVariableTypeFromDataType(dataTypeNodeId: string): Promise<IOpcNode | ISiomeApiError>;
+    createVariableTypeFromDataType(dataTypeNodeId: string): Promise<IOpcNode>;
 
     /**
      * Add a new method to the current information model.
@@ -147,6 +150,7 @@ export interface ISiomeApi {
      * @param namespaceIndex The namespace index to be used when creating the method.
      * @param inputArgs The input parameter for the new method.
      * @param outputArgs The output parameter for the new method.
+     * @throws ISiomeApiError
      */
     addMethod(
         parentNodeId: string,
@@ -154,7 +158,7 @@ export interface ISiomeApi {
         namespaceIndex: number,
         inputArgs: IMethodArguments[],
         outputArgs: IMethodArguments[]
-    ): Promise<IOpcReference | ISiomeApiError>;
+    ): Promise<IOpcReference>;
 
     /**
      * Add a new argument to the input or output arguments of a method.
@@ -162,25 +166,21 @@ export interface ISiomeApi {
      * @param methodNodeId Add a new argument underneath this method node.
      * @param argumentType Input or Output argument
      * @param params The parameters required for creating new argument.
+     * @throws ISiomeApiError
      */
 
-    addMethodArgument(
-        methodNodeId: string,
-        argumentType: ArgumentType,
-        params: IMethodArguments
-    ): Promise<void | ISiomeApiError>;
+    addMethodArgument(methodNodeId: string, argumentType: ArgumentType, params: IMethodArguments):Promise<void>;
+
 
     /**
      * Get all the input or output arguments of the method.
      * @category OPC UA
      * @param methodNodeId  The nodeId of the method.
      * @param argumentType Type of the argument - Input or Output argument
+     * @throws ISiomeApiError
      */
 
-    getAllMethodArguments(
-        methodNodeId: string,
-        argumentType: ArgumentType
-    ): Promise<IMethodArguments[] | ISiomeApiError>;
+    getAllMethodArguments(methodNodeId: string, argumentType: ArgumentType):Promise<IMethodArguments[]>
 
     /**
      * Get a specific input or output argument of the method.
@@ -188,13 +188,10 @@ export interface ISiomeApi {
      * @param methodNodeId  The nodeId of the method.
      * @param argumentType Type of the argument - Input or Output argument
      * @param argumentName Name of the argument
+     * @throws ISiomeApiError
      */
 
-    getMethodArgument(
-        methodNodeId: string,
-        argumentType: ArgumentType,
-        argumentName: string
-    ): Promise<IMethodArguments | ISiomeApiError>;
+    getMethodArgument(methodNodeId: string, argumentType: ArgumentType, argumentName: string):Promise<IMethodArguments>;
 
     /**
      * Edit the input or output argument of a method.
@@ -203,27 +200,21 @@ export interface ISiomeApi {
      * @param argumentType Type of the argument - Input or Output argument
      * @param argumentName The name of the argument which needs to be edited
      * @param params
+     * @throws ISiomeApiError
      */
 
-    editMethodArgument(
-        methodNodeId: string,
-        argumentType: ArgumentType,
-        argumentName: string,
-        params: IMethodArguments
-    ): Promise<void | ISiomeApiError>;
+    editMethodArgument(methodNodeId: string, argumentType: ArgumentType,argumentName: string, params: IMethodArguments): Promise<void>;
 
     /**
      * Delete the input or output argument of the method.
      * @category OPC UA
      * @param methodNodeId  The nodeId of the method.
      * @param argumentType Type of the argument - Input or Output argument
+     * @param argumentName
+     * @throws ISiomeApiError
      */
 
-    deleteMethodArgument(
-        methodNodeId: string,
-        argumentType: ArgumentType,
-        argumentName: string
-    ): Promise<void | ISiomeApiError>;
+    deleteMethodArgument(methodNodeId: string, argumentType: ArgumentType, argumentName: string):Promise<void>;
 
     /**
      * Set the attributes of a node
@@ -258,22 +249,23 @@ export interface ISiomeApi {
      * @param namespaceIndex namespace index.
      * @param value The new value
      */
-    setNamespaceAttribute(attributeId: NamespaceAttributeId, namespaceIndex: number, value: string): void;
+    setNamespaceAttribute(attributeId: NamespaceAttributeId, namespaceIndex: number, value: string): Promise<void>;
 
     /**
      * Retrieve the internal IProjectNode belonging to a specific namespace uri.
      * @category OPC UA
      * @param namespaceUri to be searched for e.g. "http://opcfoundation.org/UA/".
+     * @throws ISiomeApiError
      */
-    getNamespace(namespaceUri: string): IProjectNode | ISiomeApiError;
+    getNamespace(namespaceUri: string): Promise<IProjectNode>;
 
     /**
      * The method checks if the provided child is a descendant of the provided node
      * @category OPC UA
      * @param childNodeId
-     * @param nodeID
+     * @param nodeId
      */
-    isDescendantFrom(childNodeId: string, nodeId: string): boolean;
+    isDescendantFrom(childNodeId: string, nodeId: string): Promise<boolean>;
 
     /**
      * Set the modelling rule for a given reference
@@ -281,7 +273,7 @@ export interface ISiomeApi {
      * @param nodeId
      * @param rule
      */
-    setModellingRule(nodeId: string, rule: ModellingRules): void;
+    setModellingRule(nodeId: string, rule: ModellingRules): Promise<void>;
 
     /**
      * Set mapping for a given node
@@ -289,7 +281,7 @@ export interface ISiomeApi {
      * @param nodeId
      * @param mapping e.g. "\"Datablock1\".\"MyVariable\""
      */
-    setMapping(nodeId: string, mapping: string): void;
+    setMapping(nodeId: string, mapping: string): Promise<void>;
 
     /**
      * Get all active type references of the given node
@@ -317,8 +309,9 @@ export interface ISiomeApi {
      * Open a dialog in SiOME to select a directory.
      * @category UI
      * @param title Title of the dialog
+     * @throws ISiomeApiError
      */
-    openSelectDirectoryDialog(title?: string): Promise<string | ISiomeApiError>;
+    openSelectDirectoryDialog(title?: string): Promise<string>;
 
     /**
      * The method adds a context menu for each node in the information model.
@@ -333,7 +326,7 @@ export interface ISiomeApi {
         execute: (node: IOpcNode) => void,
         disabled?: (node: IOpcNode) => boolean,
         visible?: (node: IOpcNode) => boolean
-    ): void;
+    ): Promise<void>;
 
     /**
      * The method adds a context menu in the mapping area for each node in the information model.
@@ -348,7 +341,7 @@ export interface ISiomeApi {
         execute: (node: IOpcNode) => void,
         disabled?: (node: IOpcNode) => boolean,
         visible?: (node: IOpcNode) => boolean
-    ): void;
+    ): Promise<void>;
 
     /**
      * Open an alert dialog in SiOME
@@ -356,7 +349,7 @@ export interface ISiomeApi {
      * @param headline
      * @param message
      */
-    openAlertDialog(headline: string, message: string): void;
+    openAlertDialog(headline: string, message: string): Promise<void>;
 
     /**
      * Open a dialog in SiOME to select one or multiple file(s).
@@ -364,19 +357,20 @@ export interface ISiomeApi {
      * @param defaultPath
      * @param fileExtension
      * @param multiSelect
+     * @throws ISiomeApiError
      */
     openSelectFileDialog(
         defaultPath?: string,
         fileExtension?: string,
         multiSelect?: boolean
-    ): Promise<string[] | ISiomeApiError>;
+    ): Promise<string[]>;
 
     /**
      * Jump to a specific node in the information model tree
      * @category UI
      * @param nodeId
      */
-    jumpToNode(nodeId: string): void;
+    jumpToNode(nodeId: string): Promise<void>;
 
     /**
      * Open the default dialog in SiOME to export nodesets
@@ -387,9 +381,9 @@ export interface ISiomeApi {
     /**
      * Highlight and select the specific node in the information model.
      * @category UI
-     * @param node The node which should be highlighted and selected.
+     * @param nodeId
      */
-    activateOpcNode(nodeId: string): void;
+    activateOpcNode(nodeId: string): Promise<void>;
     //#endregion
 
     //#region General Methods
@@ -408,7 +402,7 @@ export interface ISiomeApi {
      * @category General
      * @param name The description for the parent log node.
      */
-    createLogNode(name: string): void;
+    createLogNode(name: string): Promise<void>;
 
     /**
      * Add a new entry with the specific type under the current parent log node.
@@ -416,7 +410,7 @@ export interface ISiomeApi {
      * @param logEntry The entry to be added.
      * @param type Available types are "info", "error", "warning".
      */
-    newLogEntry(logEntry: string, type: string): void;
+    newLogEntry(logEntry: string, type: string): Promise<void>;
 
     /**
      * The method returns the current SiOME settings
@@ -463,31 +457,34 @@ export interface ISiomeApi {
      * }
      * ```
      */
-    getSiOMESettings(): any;
+    getSiOMESettings(): Promise<any>;
 
     /**
      * The method  closes the SiOME.
      * @category General
      */
-    closeSiOME(): void;
+    closeSiOME(): Promise<void>;
 
     /**
      * The method returns the current SiOME version
      * @category General
      * @returns version string
      */
-    getSiOMEVersion(): string;
+    getSiOMEVersion(): Promise<string>;
 
     /**
      * Return the nodeset as a string created by the given namespace uris
      * @category General
      * @param namespaceUris
+     * @param includeMappings
+     * @param includeValues
+     * @throws ISiomeApiError
      */
     exportXML(
         namespaceUris: string[],
         includeMappings: boolean,
         includeValues: boolean
-    ): Promise<string | ISiomeApiError>;
+    ): Promise<string>;
 
     /**
      * Load a namespace with a given path but without a dialog
@@ -503,19 +500,19 @@ export interface ISiomeApi {
      * Gets a list of open TIA-Portal projects
      * @category TIA Portal
      */
-    getListOfOpenProjectsInTIA(): Promise<string[]>;
+    getListOfOpenProjectsInTIA(): Promise<string[]>
 
     /**
      * Check if SiOME is currently attached to a TIA Portal project.
      * @category TIA Portal
      */
-    isAttachedToTIA(): boolean;
+    isAttachedToTIA(): Promise<boolean>;
 
     /**
      * Get the current TIA Portal project path.
      * @category TIA Portal
      */
-    getTIAProjectPath(): string;
+    getTIAProjectPath(): Promise<string>;
 
     /**
      * Open a dialog in SiOME to attach to a TIA Portal project.
@@ -526,21 +523,15 @@ export interface ISiomeApi {
     /**
      * connect to a TIA Portal project.
      * @category TIA Portal
-<    * @param attach {boolean} true is attach and false is open by using the path provided
+     <    * @param attach {boolean} true is attach and false is open by using the path provided
+     * @param attach
      * @param disableTimeout
      * @param path {string} required when attach is false and multiple TIA instances are open
      * @param plcName required when multiple PLCs are present in the TIA project
      * @param userName
      * @param password
      */
-    connectToTIAImplicit(
-        attach: boolean,
-        disableTimeout: boolean,
-        path?: string,
-        plcName?: string,
-        userName?: string,
-        password?: string
-    ): Promise<void | IOpenProjectError>;
+    connectToTIAImplicit(attach: boolean, disableTimeout: boolean, path?: string, plcName?: string, userName?: string, password?:string ): Promise<void | IOpenProjectError>;
 
     /**
      * Close the TIA Portal project attached in SiOME
@@ -579,19 +570,19 @@ export interface ISiomeApi {
      * Retrieve all available db names in current TIA Portal project
      * @category TIA Portal
      */
-    getAllBlockNames(): string[];
+    getAllBlockNames(): Promise<string[]>;
 
     /**
      * Retrieve all available udt names in current TIA Portal project
      * @category TIA Portal
      */
-    getAllUdtNames(): string[];
+    getAllUdtNames(): Promise<string[]>;
 
     /**
      * Retrieve all available tag tables in current TIA Portal project
      * @category TIA Portal
      */
-    getAllTagTableNames(): string[];
+    getAllTagTableNames(): Promise<string[]>;
 
     /**
      * Open a dialog in SiOME to choose the server interface export options to the TIA Portal.
@@ -604,7 +595,7 @@ export interface ISiomeApi {
      * Implicitly adds the Simatic server interface to the TIA-Portal.
      * @category TIA Portal
      * @param isReferenceNamespace
-     * @param namespaces indices of the namespaces to be exported number[] | string (e.g. 1,2)
+     * @param namespaceIndices
      * @param serverInterfaceName
      */
     addSimaticServerInterfaceImplicit(
@@ -622,8 +613,9 @@ export interface ISiomeApi {
      * @category Validation
      * @param filePath
      * @param providedSchemas
+     * @throws ISiomeApiError
      */
-    validateSchema(filePath: string, providedSchemas: ISchemas[]): Promise<boolean | ISiomeApiError>;
+    validateSchema(filePath: string, providedSchemas: ISchemas[]): Promise<boolean>;
 
     /**
      * Validate the mapping for a given node and its children
@@ -655,33 +647,33 @@ export interface ISiomeApi {
     openDisconnectOpcServerDialog(): Promise<void>;
 
     /**
-   * Connect to an opc ua server without showing a dialog
-   * @category Client
-   * @param connectParams
-   * @param browseOrAll
-   *
-   * Example connectParams
-   * {
-         address: "opc.tcp://192.168.1.50:4840"
-         allowExpiredTokens: false
-         applicationName: "SIMATIC.S7-1500.OPC-UA.Application:PLC_1"
-         certificateKeyPathClient: "C:\\Users\\johndoe\Desktop\\certificates\\SiOME_client_key.pem"
-         certificatePathClient: "C:\\Users\\johndoe\Desktop\\certificates\\SiOME_client_cert.der"
-         overrideEndpointUrl: ""
-         password: "mySecretPassword"
-         securityMode: 3
-         securityPolicy: "http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256"
-         session: "SiOME_Plugin_Session"
-         username: "myUsername"
-   * }
-   */
+     * Connect to an opc ua server without showing a dialog
+     * @category Client
+     * @param connectParams
+     * @param browseOrAll
+     *
+     * Example connectParams
+     * {
+     address: "opc.tcp://192.168.1.50:4840"
+     allowExpiredTokens: false
+     applicationName: "SIMATIC.S7-1500.OPC-UA.Application:PLC_1"
+     certificateKeyPathClient: "C:\\Users\\johndoe\Desktop\\certificates\\SiOME_client_key.pem"
+     certificatePathClient: "C:\\Users\\johndoe\Desktop\\certificates\\SiOME_client_cert.der"
+     overrideEndpointUrl: ""
+     password: "mySecretPassword"
+     securityMode: 3
+     securityPolicy: "http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256"
+     session: "SiOME_Plugin_Session"
+     username: "myUsername"
+     * }
+     */
     connectImplicit(connectParams: IConnectParams, browseOrAll: BrowseOrAll): Promise<boolean>;
 
     /**
      * Disconnect from current opc ua server without showing a dialog
      * @category Client
      */
-    disconnectImplicit(): void;
+    disconnectImplicit(): Promise<void>;
 
     /**
      * Find an opc ua server through a given address
@@ -689,6 +681,7 @@ export interface ISiomeApi {
      * @param address
      * @param certificateFilePath
      * @param privateKeyFilePath
+     * @throws ISiomeApiError
      */
     findGateway(
         address: string,
@@ -700,21 +693,24 @@ export interface ISiomeApi {
      * Browse the online information model for a specific nodeId
      * @category Client
      * @param nodeId
+     * @throws ISiomeApiError
      */
-    browse(nodeId: string): Promise<IBrowseResult | ISiomeApiError>;
+    browse(nodeId: string): Promise<IBrowseResult>;
 
     /**
      * Read a node in the online information model
      * @category Client
      * @param nodeId
+     * @throws ISiomeApiError
      */
-    read(nodeId: string): Promise<IReadResult | ISiomeApiError>;
+    read(nodeId: string): Promise<IReadResult>;
 
     /**
      * Call a specific online method with given input arguments
      * @category Client
      * @param methodNodeId
      * @param inputArguments
+     * @throws ISiomeApiError
      */
     callMethod(methodNodeId: string, inputArguments: IOnlineMethodArguments[]): Promise<any>;
 
@@ -722,7 +718,8 @@ export interface ISiomeApi {
      * Set the value of a online varibale
      * @category Client
      * @param nodeId The node which value should be changed.
-     * @param options The new value
+     * @param value The new value
+     * @throws ISiomeApiError
      */
     setOnlineVariableValue(nodeId: string, value: any): Promise<void>;
     //#endregion
@@ -756,7 +753,7 @@ export interface ISiomeApi {
         headerLayoutUri: string,
         isUnicast: boolean,
         listenPort: string
-    ): void;
+    ): Promise<void>;
 
     /**
      * Create Pubsub connection
@@ -801,7 +798,7 @@ export interface ISiomeApi {
      * @param pubSubDatasetNodeId The nodeId of the dataset to add the variables
      * @param nodeIds The nodeIds of the nodes to add
      */
-    addPubSubVariables(pubSubDatasetNodeId: string, nodeIds: string[]): void;
+    addPubSubVariables(pubSubDatasetNodeId: string, nodeIds: string[]): Promise<void>;
 
     /**
      * Add Pubsub Subscribed Dataset
@@ -827,18 +824,18 @@ export interface ISiomeApi {
      * Gets all published DataSets
      * @category PubSub
      */
-    getAllPublishedDatasets(): IOpcNode[];
+    getAllPublishedDatasets(): Promise<IOpcNode[]>;
 
     /**
      * Check if Namespace up to date
      * @category PubSub
      */
-    isNamespaceZeroUpdateNecessary(): boolean;
+    isNamespaceZeroUpdateNecessary(): Promise<boolean>;
 
     /**
      * update namespace
      * @category PubSub
      */
-    updateNamespaceZero(): void;
+    updateNamespaceZero(): Promise<void>;
     //#endregion
 }
