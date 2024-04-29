@@ -9293,7 +9293,7 @@
 </ul>
 <h2 id="client">Client</h2>
 <h3 id="browse">browse</h3>
-<p>▸ <strong>browse</strong>(<code>nodeId</code>): <code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_browse_result_interface.IBrowseResult/"><code>IBrowseResult</code></a>></p>
+<p>▸ <strong>browse</strong>(<code>nodeId</code>): <code>Promise</code>\&lt;<a href="../interfaces_browse_result_interface.IBrowseResult/"><code>IBrowseResult</code></a>></p>
 <p>Browse the online information model for a specific nodeId</p>
 <h4 id="parameters">Parameters</h4>
 <table>
@@ -9311,9 +9311,11 @@
 </tbody>
 </table>
 <h4 id="returns">Returns</h4>
-<p><code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_browse_result_interface.IBrowseResult/"><code>IBrowseResult</code></a>></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_browse_result_interface.IBrowseResult/"><code>IBrowseResult</code></a>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:704</p>
+<p>interfaces/siome-api.interface.ts:698</p>
 <hr />
 <h3 id="callmethod">callMethod</h3>
 <p>▸ <strong>callMethod</strong>(<code>methodNodeId</code>, <code>inputArguments</code>): <code>Promise</code>\&lt;<code>any</code>></p>
@@ -9339,8 +9341,10 @@
 </table>
 <h4 id="returns_1">Returns</h4>
 <p><code>Promise</code>\&lt;<code>any</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_1">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:719</p>
+<p>interfaces/siome-api.interface.ts:715</p>
 <hr />
 <h3 id="connectimplicit">connectImplicit</h3>
 <p>▸ <strong>connectImplicit</strong>(<code>connectParams</code>, <code>browseOrAll</code>): <code>Promise</code>\&lt;<code>boolean</code>></p>
@@ -9370,15 +9374,15 @@
 <h4 id="returns_2">Returns</h4>
 <p><code>Promise</code>\&lt;<code>boolean</code>></p>
 <h4 id="defined-in_2">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:678</p>
+<p>interfaces/siome-api.interface.ts:670</p>
 <hr />
 <h3 id="disconnectimplicit">disconnectImplicit</h3>
-<p>▸ <strong>disconnectImplicit</strong>(): <code>void</code></p>
+<p>▸ <strong>disconnectImplicit</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Disconnect from current opc ua server without showing a dialog</p>
 <h4 id="returns_3">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_3">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:684</p>
+<p>interfaces/siome-api.interface.ts:676</p>
 <hr />
 <h3 id="findgateway">findGateway</h3>
 <p>▸ <strong>findGateway</strong>(<code>address</code>, <code>certificateFilePath</code>, <code>privateKeyFilePath</code>): <code>Promise</code>\&lt;<code>Map</code>\&lt;<code>string</code>, <a href="../interfaces_endpoint_interface.IEndpoint/"><code>IEndpoint</code></a>[]>></p>
@@ -9408,8 +9412,10 @@
 </table>
 <h4 id="returns_4">Returns</h4>
 <p><code>Promise</code>\&lt;<code>Map</code>\&lt;<code>string</code>, <a href="../interfaces_endpoint_interface.IEndpoint/"><code>IEndpoint</code></a>[]>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_4">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:693</p>
+<p>interfaces/siome-api.interface.ts:686</p>
 <hr />
 <h3 id="getonlinestatussubscription">getOnlineStatusSubscription</h3>
 <p>▸ <strong>getOnlineStatusSubscription</strong>(): <code>BehaviorSubject</code>\&lt;<code>boolean</code>></p>
@@ -9417,7 +9423,7 @@
 <h4 id="returns_5">Returns</h4>
 <p><code>BehaviorSubject</code>\&lt;<code>boolean</code>></p>
 <h4 id="defined-in_5">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:643</p>
+<p>interfaces/siome-api.interface.ts:635</p>
 <hr />
 <h3 id="openconnectopcserverdialog">openConnectOpcServerDialog</h3>
 <p>▸ <strong>openConnectOpcServerDialog</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -9425,7 +9431,7 @@
 <h4 id="returns_6">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_6">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:649</p>
+<p>interfaces/siome-api.interface.ts:641</p>
 <hr />
 <h3 id="opendisconnectopcserverdialog">openDisconnectOpcServerDialog</h3>
 <p>▸ <strong>openDisconnectOpcServerDialog</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -9433,10 +9439,10 @@
 <h4 id="returns_7">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_7">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:655</p>
+<p>interfaces/siome-api.interface.ts:647</p>
 <hr />
 <h3 id="read">read</h3>
-<p>▸ <strong>read</strong>(<code>nodeId</code>): <code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_read_result_interface.IReadResult/"><code>IReadResult</code></a>></p>
+<p>▸ <strong>read</strong>(<code>nodeId</code>): <code>Promise</code>\&lt;<a href="../interfaces_read_result_interface.IReadResult/"><code>IReadResult</code></a>></p>
 <p>Read a node in the online information model</p>
 <h4 id="parameters_4">Parameters</h4>
 <table>
@@ -9454,9 +9460,11 @@
 </tbody>
 </table>
 <h4 id="returns_8">Returns</h4>
-<p><code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_read_result_interface.IReadResult/"><code>IReadResult</code></a>></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_read_result_interface.IReadResult/"><code>IReadResult</code></a>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_8">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:711</p>
+<p>interfaces/siome-api.interface.ts:706</p>
 <hr />
 <h3 id="setonlinevariablevalue">setOnlineVariableValue</h3>
 <p>▸ <strong>setOnlineVariableValue</strong>(<code>nodeId</code>, <code>value</code>): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -9479,25 +9487,27 @@
 <tr>
 <td align="left"><code>value</code></td>
 <td align="left"><code>any</code></td>
-<td align="left">-</td>
+<td align="left">The new value</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns_9">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_9">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:727</p>
+<p>interfaces/siome-api.interface.ts:724</p>
 <h2 id="general">General</h2>
 <h3 id="closesiome">closeSiOME</h3>
-<p>▸ <strong>closeSiOME</strong>(): <code>void</code></p>
+<p>▸ <strong>closeSiOME</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>The method  closes the SiOME.</p>
 <h4 id="returns_10">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_10">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:472</p>
+<p>interfaces/siome-api.interface.ts:466</p>
 <hr />
 <h3 id="createlognode">createLogNode</h3>
-<p>▸ <strong>createLogNode</strong>(<code>name</code>): <code>void</code></p>
+<p>▸ <strong>createLogNode</strong>(<code>name</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Create a root log node.</p>
 <h4 id="parameters_6">Parameters</h4>
 <table>
@@ -9517,12 +9527,12 @@
 </tbody>
 </table>
 <h4 id="returns_11">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_11">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:411</p>
+<p>interfaces/siome-api.interface.ts:405</p>
 <hr />
 <h3 id="exportxml">exportXML</h3>
-<p>▸ <strong>exportXML</strong>(<code>namespaceUris</code>, <code>includeMappings</code>, <code>includeValues</code>): <code>Promise</code>\&lt;<code>string</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p>▸ <strong>exportXML</strong>(<code>namespaceUris</code>, <code>includeMappings</code>, <code>includeValues</code>): <code>Promise</code>\&lt;<code>string</code>></p>
 <p>Return the nodeset as a string created by the given namespace uris</p>
 <h4 id="parameters_7">Parameters</h4>
 <table>
@@ -9548,15 +9558,17 @@
 </tbody>
 </table>
 <h4 id="returns_12">Returns</h4>
-<p><code>Promise</code>\&lt;<code>string</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p><code>Promise</code>\&lt;<code>string</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_12">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:486</p>
+<p>interfaces/siome-api.interface.ts:483</p>
 <hr />
 <h3 id="getsiomesettings">getSiOMESettings</h3>
-<p>▸ <strong>getSiOMESettings</strong>(): <code>any</code></p>
+<p>▸ <strong>getSiOMESettings</strong>(): <code>Promise</code>\&lt;<code>any</code>></p>
 <p>The method returns the current SiOME settings</p>
 <h4 id="returns_13">Returns</h4>
-<p><code>any</code></p>
+<p><code>Promise</code>\&lt;<code>any</code>></p>
 <p>An object containing all current settings
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">actualNodeChildrenAmountOnline</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
@@ -9598,16 +9610,16 @@
 <span class="linenos" data-linenos="38 "></span><span class="p">}</span>
 </code></pre></div></p>
 <h4 id="defined-in_13">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:466</p>
+<p>interfaces/siome-api.interface.ts:460</p>
 <hr />
 <h3 id="getsiomeversion">getSiOMEVersion</h3>
-<p>▸ <strong>getSiOMEVersion</strong>(): <code>string</code></p>
+<p>▸ <strong>getSiOMEVersion</strong>(): <code>Promise</code>\&lt;<code>string</code>></p>
 <p>The method returns the current SiOME version</p>
 <h4 id="returns_14">Returns</h4>
-<p><code>string</code></p>
+<p><code>Promise</code>\&lt;<code>string</code>></p>
 <p>version string</p>
 <h4 id="defined-in_14">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:479</p>
+<p>interfaces/siome-api.interface.ts:473</p>
 <hr />
 <h3 id="importfile">importFile</h3>
 <p>▸ <strong>importFile</strong>(<code>fileFormat</code>, <code>supportMultipleFiles</code>): <code>Promise</code>\&lt;<a href="../interfaces_import_file_interface.IImportFile/"><code>IImportFile</code></a>></p>
@@ -9638,7 +9650,7 @@
 <p><code>Promise</code>\&lt;<a href="../interfaces_import_file_interface.IImportFile/"><code>IImportFile</code></a>></p>
 <p>The retrieved data from the file(s) as concatenated string, or an empty string if an error occurred.</p>
 <h4 id="defined-in_15">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:404</p>
+<p>interfaces/siome-api.interface.ts:398</p>
 <hr />
 <h3 id="importnodeset">importNodeSet</h3>
 <p>▸ <strong>importNodeSet</strong>(<code>path</code>): <code>Promise</code>\&lt;<code>boolean</code>></p>
@@ -9661,10 +9673,10 @@
 <h4 id="returns_16">Returns</h4>
 <p><code>Promise</code>\&lt;<code>boolean</code>></p>
 <h4 id="defined-in_16">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:497</p>
+<p>interfaces/siome-api.interface.ts:494</p>
 <hr />
 <h3 id="newlogentry">newLogEntry</h3>
-<p>▸ <strong>newLogEntry</strong>(<code>logEntry</code>, <code>type</code>): <code>void</code></p>
+<p>▸ <strong>newLogEntry</strong>(<code>logEntry</code>, <code>type</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Add a new entry with the specific type under the current parent log node.</p>
 <h4 id="parameters_10">Parameters</h4>
 <table>
@@ -9689,13 +9701,13 @@
 </tbody>
 </table>
 <h4 id="returns_17">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_17">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:419</p>
+<p>interfaces/siome-api.interface.ts:413</p>
 <hr />
 <h3 id="setcurrentnamespace">setCurrentNamespace</h3>
-<p>▸ <strong>setCurrentNamespace</strong>(<code>namespace</code>): <code>void</code></p>
-<p>sets the provided namespaceindex or namespaceUri as current namespace</p>
+<p>▸ <strong>setCurrentNamespace</strong>(<code>namespace</code>): <code>Promise</code>\&lt;<code>void</code>></p>
+<p>sets the provided namespace index or namespaceUri as current namespace</p>
 <h4 id="parameters_11">Parameters</h4>
 <table>
 <thead>
@@ -9709,17 +9721,17 @@
 <tr>
 <td align="left"><code>namespace</code></td>
 <td align="left"><code>string</code> | <code>number</code></td>
-<td align="left">namespaceindex or namespaceUri</td>
+<td align="left">namespace index or namespaceUri</td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns_18">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_18">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:76</p>
+<p>interfaces/siome-api.interface.ts:77</p>
 <h2 id="opc-ua">OPC UA</h2>
 <h3 id="activatetypereference">activateTypeReference</h3>
-<p>▸ <strong>activateTypeReference</strong>(<code>sourceId</code>, <code>targetBrowseName</code>, <code>referenceType?</code>): <code>Promise</code>\&lt;<code>boolean</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p>▸ <strong>activateTypeReference</strong>(<code>sourceId</code>, <code>targetBrowseName</code>, <code>referenceType?</code>): <code>Promise</code>\&lt;<code>boolean</code>></p>
 <p>Activates or deactivates the type defined reference</p>
 <h4 id="parameters_12">Parameters</h4>
 <table>
@@ -9739,7 +9751,7 @@
 <tr>
 <td align="left"><code>targetBrowseName</code></td>
 <td align="left"><code>string</code></td>
-<td align="left">-</td>
+<td align="left"></td>
 </tr>
 <tr>
 <td align="left"><code>referenceType?</code></td>
@@ -9749,8 +9761,10 @@
 </tbody>
 </table>
 <h4 id="returns_19">Returns</h4>
-<p><code>Promise</code>\&lt;<code>boolean</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p><code>Promise</code>\&lt;<code>boolean</code>></p>
 <p>the status of the isActivated property</p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_19">Defined in</h4>
 <p>interfaces/siome-api.interface.ts:45</p>
 <hr />
@@ -9775,10 +9789,10 @@
 <h4 id="returns_20">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>[]></p>
 <h4 id="defined-in_20">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:299</p>
+<p>interfaces/siome-api.interface.ts:291</p>
 <hr />
 <h3 id="addchild">addChild</h3>
-<p>▸ <strong>addChild</strong>(<code>parentNodeId</code>, <code>params</code>): <code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>></p>
+<p>▸ <strong>addChild</strong>(<code>parentNodeId</code>, <code>params</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>></p>
 <p>Add a new entry to the current information model.</p>
 <h4 id="parameters_14">Parameters</h4>
 <table>
@@ -9803,13 +9817,13 @@
 </tbody>
 </table>
 <h4 id="returns_21">Returns</h4>
-<p><code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>></p>
 <p>The newly created IOpcReference or SiOMEApiError.</p>
 <h4 id="defined-in_21">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:123</p>
+<p>interfaces/siome-api.interface.ts:125</p>
 <hr />
 <h3 id="addmethod">addMethod</h3>
-<p>▸ <strong>addMethod</strong>(<code>parentNodeId</code>, <code>methodName</code>, <code>namespaceIndex</code>, <code>inputArgs</code>, <code>outputArgs</code>): <code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>></p>
+<p>▸ <strong>addMethod</strong>(<code>parentNodeId</code>, <code>methodName</code>, <code>namespaceIndex</code>, <code>inputArgs</code>, <code>outputArgs</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>></p>
 <p>Add a new method to the current information model.</p>
 <h4 id="parameters_15">Parameters</h4>
 <table>
@@ -9849,12 +9863,14 @@
 </tbody>
 </table>
 <h4 id="returns_22">Returns</h4>
-<p><code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_opc_reference_interface.IOpcReference/"><code>IOpcReference</code></a>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_22">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:151</p>
+<p>interfaces/siome-api.interface.ts:155</p>
 <hr />
 <h3 id="addmethodargument">addMethodArgument</h3>
-<p>▸ <strong>addMethodArgument</strong>(<code>methodNodeId</code>, <code>argumentType</code>, <code>params</code>): <code>Promise</code>\&lt;<code>void</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p>▸ <strong>addMethodArgument</strong>(<code>methodNodeId</code>, <code>argumentType</code>, <code>params</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Add a new argument to the input or output arguments of a method.</p>
 <h4 id="parameters_16">Parameters</h4>
 <table>
@@ -9884,12 +9900,14 @@
 </tbody>
 </table>
 <h4 id="returns_23">Returns</h4>
-<p><code>Promise</code>\&lt;<code>void</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_23">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:167</p>
+<p>interfaces/siome-api.interface.ts:172</p>
 <hr />
 <h3 id="addstructureitem">addStructureItem</h3>
-<p>▸ <strong>addStructureItem</strong>(<code>parentId</code>, <code>params</code>): <code>void</code></p>
+<p>▸ <strong>addStructureItem</strong>(<code>parentId</code>, <code>params</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="parameters_17">Parameters</h4>
 <table>
 <thead>
@@ -9913,12 +9931,12 @@
 </tbody>
 </table>
 <h4 id="returns_24">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_24">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:89</p>
+<p>interfaces/siome-api.interface.ts:90</p>
 <hr />
 <h3 id="checknamespaceavailable">checkNamespaceAvailable</h3>
-<p>▸ <strong>checkNamespaceAvailable</strong>(<code>namespaceUri</code>): <code>boolean</code></p>
+<p>▸ <strong>checkNamespaceAvailable</strong>(<code>namespaceUri</code>): <code>Promise</code>\&lt;<code>boolean</code>></p>
 <p>Check whether a specific namespace is available and loaded in SiOME.</p>
 <h4 id="parameters_18">Parameters</h4>
 <table>
@@ -9938,7 +9956,7 @@
 </tbody>
 </table>
 <h4 id="returns_25">Returns</h4>
-<p><code>boolean</code></p>
+<p><code>Promise</code>\&lt;<code>boolean</code>></p>
 <h4 id="defined-in_25">Defined in</h4>
 <p>interfaces/siome-api.interface.ts:63</p>
 <hr />
@@ -9967,10 +9985,10 @@
 <h4 id="returns_26">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_26">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:97</p>
+<p>interfaces/siome-api.interface.ts:98</p>
 <hr />
 <h3 id="createvariabletypefromdatatype">createVariableTypeFromDataType</h3>
-<p>▸ <strong>createVariableTypeFromDataType</strong>(<code>dataTypeNodeId</code>): <code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
+<p>▸ <strong>createVariableTypeFromDataType</strong>(<code>dataTypeNodeId</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <p>Add a new variable type of a given DataType to the current information model.</p>
 <h4 id="parameters_20">Parameters</h4>
 <table>
@@ -9990,21 +10008,25 @@
 </tbody>
 </table>
 <h4 id="returns_27">Returns</h4>
-<p><code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <p>The newly created VariableType or SiOMEApiError.</p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_27">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:140</p>
+<p>interfaces/siome-api.interface.ts:143</p>
 <hr />
 <h3 id="currentnamespaceindex">currentNamespaceIndex</h3>
-<p>▸ <strong>currentNamespaceIndex</strong>(): <code>number</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a></p>
+<p>▸ <strong>currentNamespaceIndex</strong>(): <code>Promise</code>\&lt;<code>number</code>></p>
 <p>Returns the current namespace index.</p>
 <h4 id="returns_28">Returns</h4>
-<p><code>number</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a></p>
+<p><code>Promise</code>\&lt;<code>number</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_28">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:69</p>
+<p>interfaces/siome-api.interface.ts:70</p>
 <hr />
 <h3 id="deletemethodargument">deleteMethodArgument</h3>
-<p>▸ <strong>deleteMethodArgument</strong>(<code>methodNodeId</code>, <code>argumentType</code>, <code>argumentName</code>): <code>Promise</code>\&lt;<code>void</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p>▸ <strong>deleteMethodArgument</strong>(<code>methodNodeId</code>, <code>argumentType</code>, <code>argumentName</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Delete the input or output argument of the method.</p>
 <h4 id="parameters_21">Parameters</h4>
 <table>
@@ -10029,17 +10051,19 @@
 <tr>
 <td align="left"><code>argumentName</code></td>
 <td align="left"><code>string</code></td>
-<td align="left">-</td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
 <h4 id="returns_29">Returns</h4>
-<p><code>Promise</code>\&lt;<code>void</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_29">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:222</p>
+<p>interfaces/siome-api.interface.ts:217</p>
 <hr />
 <h3 id="editmethodargument">editMethodArgument</h3>
-<p>▸ <strong>editMethodArgument</strong>(<code>methodNodeId</code>, <code>argumentType</code>, <code>argumentName</code>, <code>params</code>): <code>Promise</code>\&lt;<code>void</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p>▸ <strong>editMethodArgument</strong>(<code>methodNodeId</code>, <code>argumentType</code>, <code>argumentName</code>, <code>params</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Edit the input or output argument of a method.</p>
 <h4 id="parameters_22">Parameters</h4>
 <table>
@@ -10074,12 +10098,14 @@
 </tbody>
 </table>
 <h4 id="returns_30">Returns</h4>
-<p><code>Promise</code>\&lt;<code>void</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_30">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:208</p>
+<p>interfaces/siome-api.interface.ts:206</p>
 <hr />
 <h3 id="getallmethodarguments">getAllMethodArguments</h3>
-<p>▸ <strong>getAllMethodArguments</strong>(<code>methodNodeId</code>, <code>argumentType</code>): <code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_method_arguments_interface.IMethodArguments/"><code>IMethodArguments</code></a>[]></p>
+<p>▸ <strong>getAllMethodArguments</strong>(<code>methodNodeId</code>, <code>argumentType</code>): <code>Promise</code>\&lt;<a href="../interfaces_method_arguments_interface.IMethodArguments/"><code>IMethodArguments</code></a>[]></p>
 <p>Get all the input or output arguments of the method.</p>
 <h4 id="parameters_23">Parameters</h4>
 <table>
@@ -10104,9 +10130,11 @@
 </tbody>
 </table>
 <h4 id="returns_31">Returns</h4>
-<p><code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_method_arguments_interface.IMethodArguments/"><code>IMethodArguments</code></a>[]></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_method_arguments_interface.IMethodArguments/"><code>IMethodArguments</code></a>[]></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_31">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:180</p>
+<p>interfaces/siome-api.interface.ts:183</p>
 <hr />
 <h3 id="getattributedata">getAttributeData</h3>
 <p>▸ <strong>getAttributeData</strong>(<code>nodeId</code>, <code>attributeId</code>): <code>Promise</code>\&lt;<a href="../interfaces_base_attribute_data_interface.IBaseAttributeData/"><code>IBaseAttributeData</code></a>></p>
@@ -10133,10 +10161,10 @@
 <h4 id="returns_32">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_base_attribute_data_interface.IBaseAttributeData/"><code>IBaseAttributeData</code></a>></p>
 <h4 id="defined-in_32">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:312</p>
+<p>interfaces/siome-api.interface.ts:304</p>
 <hr />
 <h3 id="getmethodargument">getMethodArgument</h3>
-<p>▸ <strong>getMethodArgument</strong>(<code>methodNodeId</code>, <code>argumentType</code>, <code>argumentName</code>): <code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_method_arguments_interface.IMethodArguments/"><code>IMethodArguments</code></a>></p>
+<p>▸ <strong>getMethodArgument</strong>(<code>methodNodeId</code>, <code>argumentType</code>, <code>argumentName</code>): <code>Promise</code>\&lt;<a href="../interfaces_method_arguments_interface.IMethodArguments/"><code>IMethodArguments</code></a>></p>
 <p>Get a specific input or output argument of the method.</p>
 <h4 id="parameters_25">Parameters</h4>
 <table>
@@ -10166,12 +10194,14 @@
 </tbody>
 </table>
 <h4 id="returns_33">Returns</h4>
-<p><code>Promise</code>\&lt;<a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_method_arguments_interface.IMethodArguments/"><code>IMethodArguments</code></a>></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_method_arguments_interface.IMethodArguments/"><code>IMethodArguments</code></a>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_33">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:193</p>
+<p>interfaces/siome-api.interface.ts:194</p>
 <hr />
 <h3 id="getnamespace">getNamespace</h3>
-<p>▸ <strong>getNamespace</strong>(<code>namespaceUri</code>): <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_project_node_interface.IProjectNode/"><code>IProjectNode</code></a></p>
+<p>▸ <strong>getNamespace</strong>(<code>namespaceUri</code>): <code>Promise</code>\&lt;<a href="../interfaces_project_node_interface.IProjectNode/"><code>IProjectNode</code></a>></p>
 <p>Retrieve the internal IProjectNode belonging to a specific namespace uri.</p>
 <h4 id="parameters_26">Parameters</h4>
 <table>
@@ -10191,20 +10221,22 @@
 </tbody>
 </table>
 <h4 id="returns_34">Returns</h4>
-<p><a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_project_node_interface.IProjectNode/"><code>IProjectNode</code></a></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_project_node_interface.IProjectNode/"><code>IProjectNode</code></a>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_34">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:268</p>
+<p>interfaces/siome-api.interface.ts:260</p>
 <hr />
 <h3 id="getnamespacearray">getNamespaceArray</h3>
-<p>▸ <strong>getNamespaceArray</strong>(): <code>string</code>[]</p>
+<p>▸ <strong>getNamespaceArray</strong>(): <code>Promise</code>\&lt;<code>string</code>[]></p>
 <p>Return a string array containing the current namespace uris</p>
 <h4 id="returns_35">Returns</h4>
-<p><code>string</code>[]</p>
+<p><code>Promise</code>\&lt;<code>string</code>[]></p>
 <h4 id="defined-in_35">Defined in</h4>
 <p>interfaces/siome-api.interface.ts:55</p>
 <hr />
 <h3 id="getopcnode">getOpcNode</h3>
-<p>▸ <strong>getOpcNode</strong>(<code>nodeId</code>): <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a></p>
+<p>▸ <strong>getOpcNode</strong>(<code>nodeId</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <p>Search for the given nodeId within all available nodes in the information model.</p>
 <h4 id="parameters_27">Parameters</h4>
 <table>
@@ -10222,12 +10254,14 @@
 </tbody>
 </table>
 <h4 id="returns_36">Returns</h4>
-<p><a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_36">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:113</p>
+<p>interfaces/siome-api.interface.ts:116</p>
 <hr />
 <h3 id="isdescendantfrom">isDescendantFrom</h3>
-<p>▸ <strong>isDescendantFrom</strong>(<code>childNodeId</code>, <code>nodeId</code>): <code>boolean</code></p>
+<p>▸ <strong>isDescendantFrom</strong>(<code>childNodeId</code>, <code>nodeId</code>): <code>Promise</code>\&lt;<code>boolean</code>></p>
 <p>The method checks if the provided child is a descendant of the provided node</p>
 <h4 id="parameters_28">Parameters</h4>
 <table>
@@ -10249,19 +10283,19 @@
 </tbody>
 </table>
 <h4 id="returns_37">Returns</h4>
-<p><code>boolean</code></p>
+<p><code>Promise</code>\&lt;<code>boolean</code>></p>
 <h4 id="defined-in_37">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:276</p>
+<p>interfaces/siome-api.interface.ts:268</p>
 <hr />
 <h3 id="monitornamespace">monitorNamespace</h3>
 <p>▸ <strong>monitorNamespace</strong>(): <code>BehaviorSubject</code>\&lt;<a href="../interfaces_namespace_change_interface.INamespaceChange/"><code>INamespaceChange</code></a>></p>
 <h4 id="returns_38">Returns</h4>
 <p><code>BehaviorSubject</code>\&lt;<a href="../interfaces_namespace_change_interface.INamespaceChange/"><code>INamespaceChange</code></a>></p>
 <h4 id="defined-in_38">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:304</p>
+<p>interfaces/siome-api.interface.ts:296</p>
 <hr />
 <h3 id="searchnode">searchNode</h3>
-<p>▸ <strong>searchNode</strong>(<code>parentId</code>, <code>searchTerm</code>): <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a></p>
+<p>▸ <strong>searchNode</strong>(<code>parentId</code>, <code>searchTerm</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <p>The method tries to find a node in the information model using its BrowseName.</p>
 <h4 id="parameters_29">Parameters</h4>
 <table>
@@ -10286,13 +10320,15 @@
 </tbody>
 </table>
 <h4 id="returns_39">Returns</h4>
-<p><a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a> | <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a></p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <p>The IOpcNode with this BrowseName or SiOMEApiError.</p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_39">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:106</p>
+<p>interfaces/siome-api.interface.ts:108</p>
 <hr />
 <h3 id="setmapping">setMapping</h3>
-<p>▸ <strong>setMapping</strong>(<code>nodeId</code>, <code>mapping</code>): <code>void</code></p>
+<p>▸ <strong>setMapping</strong>(<code>nodeId</code>, <code>mapping</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Set mapping for a given node</p>
 <h4 id="parameters_30">Parameters</h4>
 <table>
@@ -10317,12 +10353,12 @@
 </tbody>
 </table>
 <h4 id="returns_40">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_40">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:292</p>
+<p>interfaces/siome-api.interface.ts:284</p>
 <hr />
 <h3 id="setmodellingrule">setModellingRule</h3>
-<p>▸ <strong>setModellingRule</strong>(<code>nodeId</code>, <code>rule</code>): <code>void</code></p>
+<p>▸ <strong>setModellingRule</strong>(<code>nodeId</code>, <code>rule</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Set the modelling rule for a given reference</p>
 <h4 id="parameters_31">Parameters</h4>
 <table>
@@ -10344,12 +10380,12 @@
 </tbody>
 </table>
 <h4 id="returns_41">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_41">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:284</p>
+<p>interfaces/siome-api.interface.ts:276</p>
 <hr />
 <h3 id="setnamespaceattribute">setNamespaceAttribute</h3>
-<p>▸ <strong>setNamespaceAttribute</strong>(<code>attributeId</code>, <code>namespaceIndex</code>, <code>value</code>): <code>void</code></p>
+<p>▸ <strong>setNamespaceAttribute</strong>(<code>attributeId</code>, <code>namespaceIndex</code>, <code>value</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Set the namespace attributes</p>
 <h4 id="parameters_32">Parameters</h4>
 <table>
@@ -10379,9 +10415,9 @@
 </tbody>
 </table>
 <h4 id="returns_42">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_42">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:261</p>
+<p>interfaces/siome-api.interface.ts:252</p>
 <hr />
 <h3 id="unlockorcreatenamespace">unlockOrCreateNamespace</h3>
 <p>▸ <strong>unlockOrCreateNamespace</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -10389,7 +10425,7 @@
 <h4 id="returns_43">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_43">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:82</p>
+<p>interfaces/siome-api.interface.ts:83</p>
 <h3 id="setattribute">setAttribute</h3>
 <p>▸ <strong>setAttribute</strong>(<code>attributeId</code>, <code>nodeId</code>, <code>options</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Set the attributes of a node</p>
@@ -10423,7 +10459,7 @@
 <h4 id="returns_44">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_44">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:248</p>
+<p>interfaces/siome-api.interface.ts:239</p>
 <h2 id="pubsub">PubSub</h2>
 <h3 id="addpubsubavailablepublisheddataset">addPubSubAvailablePublishedDataset</h3>
 <p>▸ <strong>addPubSubAvailablePublishedDataset</strong>(<code>fileNames</code>): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -10448,7 +10484,7 @@
 <h4 id="returns_45">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_45">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:824</p>
+<p>interfaces/siome-api.interface.ts:821</p>
 <hr />
 <h3 id="addpubsubconnection">addPubSubConnection</h3>
 <p>▸ <strong>addPubSubConnection</strong>(<code>newName</code>, <code>address</code>, <code>network</code>, <code>publisherId</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
@@ -10488,7 +10524,7 @@
 <h4 id="returns_46">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <h4 id="defined-in_46">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:740</p>
+<p>interfaces/siome-api.interface.ts:737</p>
 <hr />
 <h3 id="addpubsubdatasetwriter">addPubSubDatasetWriter</h3>
 <p>▸ <strong>addPubSubDatasetWriter</strong>(<code>datasetName</code>, <code>newPublishedDatasetId</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
@@ -10518,7 +10554,7 @@
 <h4 id="returns_47">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <h4 id="defined-in_47">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:775</p>
+<p>interfaces/siome-api.interface.ts:772</p>
 <hr />
 <h3 id="addpubsubpublisheddataset">addPubSubPublishedDataset</h3>
 <p>▸ <strong>addPubSubPublishedDataset</strong>(<code>newName</code>, <code>description</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
@@ -10548,10 +10584,10 @@
 <h4 id="returns_48">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <h4 id="defined-in_48">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:767</p>
+<p>interfaces/siome-api.interface.ts:764</p>
 <hr />
 <h3 id="addpubsubpublisheddatasetsimple">addPubSubPublishedDatasetSimple</h3>
-<p>▸ <strong>addPubSubPublishedDatasetSimple</strong>(<code>datasetName</code>, <code>connectionId</code>, <code>interval</code>, <code>headerLayoutUri</code>, <code>isUnicast</code>, <code>listenPort</code>): <code>void</code></p>
+<p>▸ <strong>addPubSubPublishedDatasetSimple</strong>(<code>datasetName</code>, <code>connectionId</code>, <code>interval</code>, <code>headerLayoutUri</code>, <code>isUnicast</code>, <code>listenPort</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Create Pubsub Dataset Simple</p>
 <h4 id="parameters_38">Parameters</h4>
 <table>
@@ -10596,9 +10632,9 @@
 </tbody>
 </table>
 <h4 id="returns_49">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_49">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:752</p>
+<p>interfaces/siome-api.interface.ts:749</p>
 <hr />
 <h3 id="addpubsubsubscribeddataset">addPubSubSubscribedDataset</h3>
 <p>▸ <strong>addPubSubSubscribedDataset</strong>(<code>datasetNodeId</code>, <code>isStandaloneSubscribedDataset</code>, <code>targetNodeIds</code>): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -10633,10 +10669,10 @@
 <h4 id="returns_50">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_50">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:813</p>
+<p>interfaces/siome-api.interface.ts:810</p>
 <hr />
 <h3 id="addpubsubvariables">addPubSubVariables</h3>
-<p>▸ <strong>addPubSubVariables</strong>(<code>pubSubDatasetNodeId</code>, <code>nodeIds</code>): <code>void</code></p>
+<p>▸ <strong>addPubSubVariables</strong>(<code>pubSubDatasetNodeId</code>, <code>nodeIds</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Add Variables to a Pubsub Dataset</p>
 <h4 id="parameters_40">Parameters</h4>
 <table>
@@ -10661,9 +10697,9 @@
 </tbody>
 </table>
 <h4 id="returns_51">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_51">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:804</p>
+<p>interfaces/siome-api.interface.ts:801</p>
 <hr />
 <h3 id="addpubsubwritergroup">addPubSubWriterGroup</h3>
 <p>▸ <strong>addPubSubWriterGroup</strong>(<code>datasetName</code>, <code>connectionId</code>, <code>interval</code>, <code>headerLayoutUri</code>, <code>isUnicast</code>, <code>listenPort</code>, <code>newDatasetWriterId</code>): <code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
@@ -10718,31 +10754,31 @@
 <h4 id="returns_52">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>></p>
 <h4 id="defined-in_52">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:788</p>
+<p>interfaces/siome-api.interface.ts:785</p>
 <hr />
 <h3 id="getallpublisheddatasets">getAllPublishedDatasets</h3>
-<p>▸ <strong>getAllPublishedDatasets</strong>(): <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>[]</p>
+<p>▸ <strong>getAllPublishedDatasets</strong>(): <code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>[]></p>
 <p>Gets all published DataSets</p>
 <h4 id="returns_53">Returns</h4>
-<p><a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>[]</p>
+<p><code>Promise</code>\&lt;<a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>[]></p>
 <h4 id="defined-in_53">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:830</p>
+<p>interfaces/siome-api.interface.ts:827</p>
 <hr />
 <h3 id="isnamespacezeroupdatenecessary">isNamespaceZeroUpdateNecessary</h3>
-<p>▸ <strong>isNamespaceZeroUpdateNecessary</strong>(): <code>boolean</code></p>
+<p>▸ <strong>isNamespaceZeroUpdateNecessary</strong>(): <code>Promise</code>\&lt;<code>boolean</code>></p>
 <p>Check if Namespace up to date</p>
 <h4 id="returns_54">Returns</h4>
-<p><code>boolean</code></p>
+<p><code>Promise</code>\&lt;<code>boolean</code>></p>
 <h4 id="defined-in_54">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:836</p>
+<p>interfaces/siome-api.interface.ts:833</p>
 <hr />
 <h3 id="updatenamespacezero">updateNamespaceZero</h3>
-<p>▸ <strong>updateNamespaceZero</strong>(): <code>void</code></p>
+<p>▸ <strong>updateNamespaceZero</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>update namespace</p>
 <h4 id="returns_55">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_55">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:842</p>
+<p>interfaces/siome-api.interface.ts:839</p>
 <h2 id="tia-portal">TIA Portal</h2>
 <h3 id="addsimaticserverinterface">addSimaticServerInterface</h3>
 <p>▸ <strong>addSimaticServerInterface</strong>(<code>isReferenceNamespace</code>): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -10765,7 +10801,7 @@
 <h4 id="returns_56">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_56">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:601</p>
+<p>interfaces/siome-api.interface.ts:592</p>
 <hr />
 <h3 id="addsimaticserverinterfaceimplicit">addSimaticServerInterfaceImplicit</h3>
 <p>▸ <strong>addSimaticServerInterfaceImplicit</strong>(<code>isReferenceNamespace</code>, <code>namespaceIndices</code>, <code>serverInterfaceName</code>): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -10796,7 +10832,7 @@
 <h4 id="returns_57">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_57">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:610</p>
+<p>interfaces/siome-api.interface.ts:601</p>
 <hr />
 <h3 id="closetiaproject">closeTIAProject</h3>
 <p>▸ <strong>closeTIAProject</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -10804,7 +10840,7 @@
 <h4 id="returns_58">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_58">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:549</p>
+<p>interfaces/siome-api.interface.ts:540</p>
 <hr />
 <h3 id="compiletia">compileTia</h3>
 <p>▸ <strong>compileTia</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -10812,31 +10848,31 @@
 <h4 id="returns_59">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_59">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:555</p>
+<p>interfaces/siome-api.interface.ts:546</p>
 <hr />
 <h3 id="getallblocknames">getAllBlockNames</h3>
-<p>▸ <strong>getAllBlockNames</strong>(): <code>string</code>[]</p>
+<p>▸ <strong>getAllBlockNames</strong>(): <code>Promise</code>\&lt;<code>string</code>[]></p>
 <p>Retrieve all available db names in current TIA Portal project</p>
 <h4 id="returns_60">Returns</h4>
-<p><code>string</code>[]</p>
+<p><code>Promise</code>\&lt;<code>string</code>[]></p>
 <h4 id="defined-in_60">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:582</p>
+<p>interfaces/siome-api.interface.ts:573</p>
 <hr />
 <h3 id="getalltagtablenames">getAllTagTableNames</h3>
-<p>▸ <strong>getAllTagTableNames</strong>(): <code>string</code>[]</p>
+<p>▸ <strong>getAllTagTableNames</strong>(): <code>Promise</code>\&lt;<code>string</code>[]></p>
 <p>Retrieve all available tag tables in current TIA Portal project</p>
 <h4 id="returns_61">Returns</h4>
-<p><code>string</code>[]</p>
+<p><code>Promise</code>\&lt;<code>string</code>[]></p>
 <h4 id="defined-in_61">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:594</p>
+<p>interfaces/siome-api.interface.ts:585</p>
 <hr />
 <h3 id="getalludtnames">getAllUdtNames</h3>
-<p>▸ <strong>getAllUdtNames</strong>(): <code>string</code>[]</p>
+<p>▸ <strong>getAllUdtNames</strong>(): <code>Promise</code>\&lt;<code>string</code>[]></p>
 <p>Retrieve all available udt names in current TIA Portal project</p>
 <h4 id="returns_62">Returns</h4>
-<p><code>string</code>[]</p>
+<p><code>Promise</code>\&lt;<code>string</code>[]></p>
 <h4 id="defined-in_62">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:588</p>
+<p>interfaces/siome-api.interface.ts:579</p>
 <hr />
 <h3 id="getblockdetails">getBlockDetails</h3>
 <p>▸ <strong>getBlockDetails</strong>(<code>blockName</code>): <code>Promise</code>\&lt;<a href="../interfaces_tia_node_interface.ITiaNode/"><code>ITiaNode</code></a>></p>
@@ -10859,7 +10895,7 @@
 <h4 id="returns_63">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_tia_node_interface.ITiaNode/"><code>ITiaNode</code></a>></p>
 <h4 id="defined-in_63">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:562</p>
+<p>interfaces/siome-api.interface.ts:553</p>
 <hr />
 <h3 id="getlistofopenprojectsintia">getListOfOpenProjectsInTIA</h3>
 <p>▸ <strong>getListOfOpenProjectsInTIA</strong>(): <code>Promise</code>\&lt;<code>string</code>[]></p>
@@ -10867,15 +10903,15 @@
 <h4 id="returns_64">Returns</h4>
 <p><code>Promise</code>\&lt;<code>string</code>[]></p>
 <h4 id="defined-in_64">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:506</p>
+<p>interfaces/siome-api.interface.ts:503</p>
 <hr />
 <h3 id="gettiaprojectpath">getTIAProjectPath</h3>
-<p>▸ <strong>getTIAProjectPath</strong>(): <code>string</code></p>
+<p>▸ <strong>getTIAProjectPath</strong>(): <code>Promise</code>\&lt;<code>string</code>></p>
 <p>Get the current TIA Portal project path.</p>
 <h4 id="returns_65">Returns</h4>
-<p><code>string</code></p>
+<p><code>Promise</code>\&lt;<code>string</code>></p>
 <h4 id="defined-in_65">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:518</p>
+<p>interfaces/siome-api.interface.ts:515</p>
 <hr />
 <h3 id="gettagtabledetails">getTagTableDetails</h3>
 <p>▸ <strong>getTagTableDetails</strong>(<code>tagTableName</code>): <code>Promise</code>\&lt;<a href="../interfaces_tia_node_interface.ITiaNode/"><code>ITiaNode</code></a>></p>
@@ -10898,7 +10934,7 @@
 <h4 id="returns_66">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_tia_node_interface.ITiaNode/"><code>ITiaNode</code></a>></p>
 <h4 id="defined-in_66">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:576</p>
+<p>interfaces/siome-api.interface.ts:567</p>
 <hr />
 <h3 id="getudtdetails">getUdtDetails</h3>
 <p>▸ <strong>getUdtDetails</strong>(<code>udtName</code>): <code>Promise</code>\&lt;<a href="../interfaces_tia_node_interface.ITiaNode/"><code>ITiaNode</code></a>></p>
@@ -10921,15 +10957,15 @@
 <h4 id="returns_67">Returns</h4>
 <p><code>Promise</code>\&lt;<a href="../interfaces_tia_node_interface.ITiaNode/"><code>ITiaNode</code></a>></p>
 <h4 id="defined-in_67">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:569</p>
+<p>interfaces/siome-api.interface.ts:560</p>
 <hr />
 <h3 id="isattachedtotia">isAttachedToTIA</h3>
-<p>▸ <strong>isAttachedToTIA</strong>(): <code>boolean</code></p>
+<p>▸ <strong>isAttachedToTIA</strong>(): <code>Promise</code>\&lt;<code>boolean</code>></p>
 <p>Check if SiOME is currently attached to a TIA Portal project.</p>
 <h4 id="returns_68">Returns</h4>
-<p><code>boolean</code></p>
+<p><code>Promise</code>\&lt;<code>boolean</code>></p>
 <h4 id="defined-in_68">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:512</p>
+<p>interfaces/siome-api.interface.ts:509</p>
 <hr />
 <h3 id="opentiaprojectdialog">openTIAProjectDialog</h3>
 <p>▸ <strong>openTIAProjectDialog</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -10937,7 +10973,7 @@
 <h4 id="returns_69">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_69">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:524</p>
+<p>interfaces/siome-api.interface.ts:521</p>
 <h3 id="connecttotiaimplicit">connectToTIAImplicit</h3>
 <p>▸ <strong>connectToTIAImplicit</strong>(<code>attach</code>, <code>disableTimeout</code>, <code>path?</code>, <code>plcName?</code>, <code>userName?</code>, <code>password?</code>): <code>Promise</code>\&lt;<code>void</code> | <a href="../interfaces_open_project_error_interface.IOpenProjectError/"><code>IOpenProjectError</code></a>></p>
 <p>connect to a TIA Portal project.</p>
@@ -10986,10 +11022,10 @@
 <h4 id="returns_70">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code> | <a href="../interfaces_open_project_error_interface.IOpenProjectError/"><code>IOpenProjectError</code></a>></p>
 <h4 id="defined-in_70">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:536</p>
+<p>interfaces/siome-api.interface.ts:534</p>
 <h2 id="ui">UI</h2>
 <h3 id="activateopcnode">activateOpcNode</h3>
-<p>▸ <strong>activateOpcNode</strong>(<code>nodeId</code>): <code>void</code></p>
+<p>▸ <strong>activateOpcNode</strong>(<code>nodeId</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Highlight and select the specific node in the information model.</p>
 <h4 id="parameters_48">Parameters</h4>
 <table>
@@ -11007,12 +11043,12 @@
 </tbody>
 </table>
 <h4 id="returns_71">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_71">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:392</p>
+<p>interfaces/siome-api.interface.ts:386</p>
 <hr />
 <h3 id="addbasiccontextmenu">addBasicContextMenu</h3>
-<p>▸ <strong>addBasicContextMenu</strong>(<code>text</code>, <code>execute</code>, <code>disabled?</code>, <code>visible?</code>): <code>void</code></p>
+<p>▸ <strong>addBasicContextMenu</strong>(<code>text</code>, <code>execute</code>, <code>disabled?</code>, <code>visible?</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>The method adds a context menu for each node in the information model.</p>
 <h4 id="parameters_49">Parameters</h4>
 <table>
@@ -11047,12 +11083,12 @@
 </tbody>
 </table>
 <h4 id="returns_72">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_72">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:331</p>
+<p>interfaces/siome-api.interface.ts:324</p>
 <hr />
 <h3 id="addmappingcontextmenu">addMappingContextMenu</h3>
-<p>▸ <strong>addMappingContextMenu</strong>(<code>text</code>, <code>execute</code>, <code>disabled?</code>, <code>visible?</code>): <code>void</code></p>
+<p>▸ <strong>addMappingContextMenu</strong>(<code>text</code>, <code>execute</code>, <code>disabled?</code>, <code>visible?</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>The method adds a context menu in the mapping area for each node in the information model.</p>
 <h4 id="parameters_50">Parameters</h4>
 <table>
@@ -11087,12 +11123,12 @@
 </tbody>
 </table>
 <h4 id="returns_73">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_73">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:346</p>
+<p>interfaces/siome-api.interface.ts:339</p>
 <hr />
 <h3 id="jumptonode">jumpToNode</h3>
-<p>▸ <strong>jumpToNode</strong>(<code>nodeId</code>): <code>void</code></p>
+<p>▸ <strong>jumpToNode</strong>(<code>nodeId</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Jump to a specific node in the information model tree</p>
 <h4 id="parameters_51">Parameters</h4>
 <table>
@@ -11110,12 +11146,12 @@
 </tbody>
 </table>
 <h4 id="returns_74">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_74">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:379</p>
+<p>interfaces/siome-api.interface.ts:373</p>
 <hr />
 <h3 id="openalertdialog">openAlertDialog</h3>
-<p>▸ <strong>openAlertDialog</strong>(<code>headline</code>, <code>message</code>): <code>void</code></p>
+<p>▸ <strong>openAlertDialog</strong>(<code>headline</code>, <code>message</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 <p>Open an alert dialog in SiOME</p>
 <h4 id="parameters_52">Parameters</h4>
 <table>
@@ -11137,9 +11173,9 @@
 </tbody>
 </table>
 <h4 id="returns_75">Returns</h4>
-<p><code>void</code></p>
+<p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_75">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:359</p>
+<p>interfaces/siome-api.interface.ts:352</p>
 <hr />
 <h3 id="openexportxmldialog">openExportXMLDialog</h3>
 <p>▸ <strong>openExportXMLDialog</strong>(): <code>Promise</code>\&lt;<code>void</code>></p>
@@ -11147,10 +11183,10 @@
 <h4 id="returns_76">Returns</h4>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h4 id="defined-in_76">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:385</p>
+<p>interfaces/siome-api.interface.ts:379</p>
 <hr />
 <h3 id="openselectdirectorydialog">openSelectDirectoryDialog</h3>
-<p>▸ <strong>openSelectDirectoryDialog</strong>(<code>title?</code>): <code>Promise</code>\&lt;<code>string</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p>▸ <strong>openSelectDirectoryDialog</strong>(<code>title?</code>): <code>Promise</code>\&lt;<code>string</code>></p>
 <p>Open a dialog in SiOME to select a directory.</p>
 <h4 id="parameters_53">Parameters</h4>
 <table>
@@ -11170,12 +11206,14 @@
 </tbody>
 </table>
 <h4 id="returns_77">Returns</h4>
-<p><code>Promise</code>\&lt;<code>string</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p><code>Promise</code>\&lt;<code>string</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_77">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:321</p>
+<p>interfaces/siome-api.interface.ts:314</p>
 <hr />
 <h3 id="openselectfiledialog">openSelectFileDialog</h3>
-<p>▸ <strong>openSelectFileDialog</strong>(<code>defaultPath?</code>, <code>fileExtension?</code>, <code>multiSelect?</code>): <code>Promise</code>\&lt;<code>string</code>[] | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p>▸ <strong>openSelectFileDialog</strong>(<code>defaultPath?</code>, <code>fileExtension?</code>, <code>multiSelect?</code>): <code>Promise</code>\&lt;<code>string</code>[]></p>
 <p>Open a dialog in SiOME to select one or multiple file(s).</p>
 <h4 id="parameters_54">Parameters</h4>
 <table>
@@ -11201,9 +11239,11 @@
 </tbody>
 </table>
 <h4 id="returns_78">Returns</h4>
-<p><code>Promise</code>\&lt;<code>string</code>[] | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p><code>Promise</code>\&lt;<code>string</code>[]></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_78">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:368</p>
+<p>interfaces/siome-api.interface.ts:362</p>
 <h2 id="validation">Validation</h2>
 <h3 id="validatemappings">validateMappings</h3>
 <p>▸ <strong>validateMappings</strong>(<code>nodeId</code>): <code>Promise</code>\&lt;{ <code>conflict</code>: <code>string</code> ; <code>node</code>: <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>  }[]></p>
@@ -11226,10 +11266,10 @@
 <h4 id="returns_79">Returns</h4>
 <p><code>Promise</code>\&lt;{ <code>conflict</code>: <code>string</code> ; <code>node</code>: <a href="../interfaces_opc_node_interface.IOpcNode/"><code>IOpcNode</code></a>  }[]></p>
 <h4 id="defined-in_79">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:633</p>
+<p>interfaces/siome-api.interface.ts:625</p>
 <hr />
 <h3 id="validateschema">validateSchema</h3>
-<p>▸ <strong>validateSchema</strong>(<code>filePath</code>, <code>providedSchemas</code>): <code>Promise</code>\&lt;<code>boolean</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p>▸ <strong>validateSchema</strong>(<code>filePath</code>, <code>providedSchemas</code>): <code>Promise</code>\&lt;<code>boolean</code>></p>
 <p>Validate the corresponding file with the provided schemas</p>
 <h4 id="parameters_56">Parameters</h4>
 <table>
@@ -11251,9 +11291,11 @@
 </tbody>
 </table>
 <h4 id="returns_80">Returns</h4>
-<p><code>Promise</code>\&lt;<code>boolean</code> | <a href="../interfaces_siome_api_error_interface.ISiomeApiError/"><code>ISiomeApiError</code></a>></p>
+<p><code>Promise</code>\&lt;<code>boolean</code>></p>
+<p><strong><code>Throws</code></strong></p>
+<p>ISiomeApiError</p>
 <h4 id="defined-in_80">Defined in</h4>
-<p>interfaces/siome-api.interface.ts:626</p>
+<p>interfaces/siome-api.interface.ts:618</p>
 
 
 
