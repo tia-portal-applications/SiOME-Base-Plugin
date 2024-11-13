@@ -1,4 +1,4 @@
 export interface ISchemas {
-  namespace: string;
-  schema: string;
+    namespace: string;
+    schema: string;
 }

@@ -29,6 +29,8 @@ import { IAddReferenceTypeParameter } from "./add-reference-type-parameter";
 import { IAddDataTypeParameter } from "./add-data-type-parameter";
 import { ArgumentType } from "../enums/argument-type";
 import { IOpenProjectError } from "./open-project-error.interface";
+import {IAddEnumeration} from "./add-enumeration";
+import { IValidationConflict } from "./validation-conflict.interface";
 
 export interface ISiomeApi {
     //#region OPC UA Methods
@@ -42,11 +44,7 @@ export interface ISiomeApi {
      * @returns the status of the isActivated property
      * @throws ISiomeApiError
      */
-    activateTypeReference(
-        sourceId: string,
-        targetBrowseName: string,
-        referenceType?: string
-    ): Promise<boolean>;
+    activateTypeReference(sourceId: string, targetBrowseName: string, referenceType?: string): Promise<boolean>;
 
     /**
      * Return a string array containing the current namespace uris
@@ -77,10 +75,51 @@ export interface ISiomeApi {
     setCurrentNamespace(namespace: number | string): Promise<void>;
 
     /**
+     * Save the current state of the application.
+     * @param path The path where to save.
+     * @category General
+     */
+    saveSiOME(path: string): Promise<void>;
+
+    /**
      * Open a dialog to unlock or add a new namespace.
      * @category OPC UA
      */
     unlockOrCreateNamespace(): Promise<void>;
+
+    /**
+     * Lock a namespace.
+     * @category OPC UA
+     * @param namespaceUri
+     */
+    lockNamespace(namespaceUri: string): Promise<void>;
+
+    /**
+     * Unlock a namespace.
+     * @category OPC UA
+     * @param namespaceUri
+     */
+    unlockNamespace(namespaceUri: string): Promise<void>;
+
+    /**
+     * Change the order of the namespaces.
+     * @category OPC UA
+     * @param newNamespaceOrder The uris in the new order seperated by "," (e.g.: "http://ns2, http://ns1")
+     */
+    changeNamespaceOrder(newNamespaceOrder: string): Promise<void>
+
+    /**
+     * Check the dependencies between namespaces.
+     * @category OPC UA
+     */
+    checkDependencies(): Promise<IProjectNode[]>
+
+    /**
+     * Show how many nodes a namespace has.
+     * @category OPC UA
+     * @param namespaceUri
+     */
+    countNumberOfNodes(namespaceUri: string): Promise<number>
 
     /**
      * @param parentId The NodeId of the DataType.
@@ -125,13 +164,54 @@ export interface ISiomeApi {
     addChild(
         parentNodeId: string,
         params:
-            IAddVariableParameter |
-            IAddVariableTypeParameter |
-            IAddObjectParameter |
-            IAddObjectTypeParameter |
-            IAddReferenceTypeParameter |
-            IAddDataTypeParameter
+            | IAddVariableParameter
+            | IAddEnumeration
+            | IAddVariableTypeParameter
+            | IAddObjectParameter
+            | IAddObjectTypeParameter
+            | IAddReferenceTypeParameter
+            | IAddDataTypeParameter
     ): Promise<IOpcReference>;
+
+    /**
+     * Add a new reference from the sourceNode to the targetNode.
+     * @category OPC UA
+     * @param sourceId The NodeId of the source node in string representation.
+     * @param targetId The NodeId of the target node in string representation.
+     * @param referenceTypeId The NodeId of the reference type in string representation.
+     * @param isForward The direction of the reference.
+     * @returns The newly created IOpcReference.
+     * @throws ISiomeApiError
+     */
+    addReference(sourceId: string, targetId: string, referenceTypeId: string, isForward: boolean): Promise<IOpcReference>;
+
+    /**
+     * Remove a reference. If it is the last hierarchical reference to the target node, the node will be deleted.
+     * @category OPC UA
+     * @param sourceId The NodeId of the source node in string representation.
+     * @param targetId The NodeId of the target node in string representation.
+     * @param referenceTypeId The NodeId of the reference type in string representation.
+     * @throws ISiomeApiError
+     */
+    removeReference(sourceId: string, targetId: string, referenceTypeId: string): Promise<void>;
+
+    /**
+     * Delete a node.
+     * @category OPC UA
+     * @param nodeId The NodeId of the node in string representation.
+     * @throws ISiomeApiError
+     */
+    deleteNode(nodeId: string): Promise<void>;
+
+    /**
+     * Move a node to a new parent.
+     * @category OPC UA
+     * @param nodeId The NodeId of the node in string representation.
+     * @param currentParentId The NodeId of the current node in string representation.
+     * @param newParentId The NodeId of the new parent node in string representation.
+     * @throws ISiomeApiError
+     */
+    moveNode(nodeId: string, currentParentId: string, newParentId: string): Promise<void>;
 
     /**
      * Add a new variable type of a given DataType to the current information model.
@@ -169,8 +249,7 @@ export interface ISiomeApi {
      * @throws ISiomeApiError
      */
 
-    addMethodArgument(methodNodeId: string, argumentType: ArgumentType, params: IMethodArguments):Promise<void>;
-
+    addMethodArgument(methodNodeId: string, argumentType: ArgumentType, params: IMethodArguments): Promise<void>;
 
     /**
      * Get all the input or output arguments of the method.
@@ -180,7 +259,7 @@ export interface ISiomeApi {
      * @throws ISiomeApiError
      */
 
-    getAllMethodArguments(methodNodeId: string, argumentType: ArgumentType):Promise<IMethodArguments[]>
+    getAllMethodArguments(methodNodeId: string, argumentType: ArgumentType): Promise<IMethodArguments[]>;
 
     /**
      * Get a specific input or output argument of the method.
@@ -191,7 +270,11 @@ export interface ISiomeApi {
      * @throws ISiomeApiError
      */
 
-    getMethodArgument(methodNodeId: string, argumentType: ArgumentType, argumentName: string):Promise<IMethodArguments>;
+    getMethodArgument(
+        methodNodeId: string,
+        argumentType: ArgumentType,
+        argumentName: string
+    ): Promise<IMethodArguments>;
 
     /**
      * Edit the input or output argument of a method.
@@ -203,7 +286,12 @@ export interface ISiomeApi {
      * @throws ISiomeApiError
      */
 
-    editMethodArgument(methodNodeId: string, argumentType: ArgumentType,argumentName: string, params: IMethodArguments): Promise<void>;
+    editMethodArgument(
+        methodNodeId: string,
+        argumentType: ArgumentType,
+        argumentName: string,
+        params: IMethodArguments
+    ): Promise<void>;
 
     /**
      * Delete the input or output argument of the method.
@@ -214,11 +302,11 @@ export interface ISiomeApi {
      * @throws ISiomeApiError
      */
 
-    deleteMethodArgument(methodNodeId: string, argumentType: ArgumentType, argumentName: string):Promise<void>;
+    deleteMethodArgument(methodNodeId: string, argumentType: ArgumentType, argumentName: string): Promise<void>;
 
     /**
      * Set the attributes of a node
-     * @category OPCUA
+     * @category OPC UA
      * @param attributeId The id of the attribute to be set
      * @param nodeId The nodeId whose properties need to be set.
      * @param options The required options to set the attribute
@@ -279,7 +367,7 @@ export interface ISiomeApi {
      * Set mapping for a given node
      * @category OPC UA
      * @param nodeId
-     * @param mapping e.g. "\"Datablock1\".\"MyVariable\""
+     * @param mapping
      */
     setMapping(nodeId: string, mapping: string): Promise<void>;
 
@@ -359,11 +447,7 @@ export interface ISiomeApi {
      * @param multiSelect
      * @throws ISiomeApiError
      */
-    openSelectFileDialog(
-        defaultPath?: string,
-        fileExtension?: string,
-        multiSelect?: boolean
-    ): Promise<string[]>;
+    openSelectFileDialog(defaultPath?: string, fileExtension?: string, multiSelect?: boolean): Promise<string[]>;
 
     /**
      * Jump to a specific node in the information model tree
@@ -460,6 +544,57 @@ export interface ISiomeApi {
     getSiOMESettings(): Promise<any>;
 
     /**
+     * The setting for sorting the nodes alphabetically.
+     * @category General
+     */
+    toggleSortNodesAlphabetically(): Promise<void>;
+
+    /**
+     * The setting for showing data types of nodes.
+     * @category General
+     * @throws ISiomeApiError
+     */
+    toggleShowDataTypes(): Promise<void>;
+
+    /**
+     * The setting for showing display or browse name of the nodes.
+     * @category General
+     * @throws ISiomeApiError
+     */
+    toggleShowDisplayName(): Promise<void>;
+
+    /**
+     * The setting for displaying the nodeID either as string or as numeric.
+     * @category General
+     * @throws ISiomeApiError
+     */
+    toggleDefaultNodeID(): Promise<void>;
+
+    /**
+     * The setting for validating against the UANodeset.xsd.
+     * @category General
+     * @param val
+     * @throws ISiomeApiError
+     */
+    validateUANodeSet(val: boolean): Promise<void>
+
+    /**
+     * The setting for selecting default placeholder value at nodes.
+     * @category General
+     * @param defaultPlaceholder
+     * @throws ISiomeApiError
+     */
+    startValueForPlaceholder(defaultPlaceholder: number): Promise<void>
+
+    /**
+     * The setting for the maximum allowed nodes in the project.
+     * @category General
+     * @param maxNodeLimit
+     * @throws ISiomeApiError
+     */
+    changeMaxNodeLimit(maxNodeLimit: number): Promise<void>
+
+    /**
      * The method  closes the SiOME.
      * @category General
      */
@@ -473,18 +608,27 @@ export interface ISiomeApi {
     getSiOMEVersion(): Promise<string>;
 
     /**
-     * Return the nodeset as a string created by the given namespace uris
+     * Exports the nodeset in xml format
      * @category General
-     * @param namespaceUris
-     * @param includeMappings
-     * @param includeValues
+     * @param namespaceUris The namespace uris to export
+     * @param includeMappings Should mappings be exported
+     * @param includeValues Should values be exported
+     * @param exportPath Path where to export to
+     * @param exportName Name of the exported file
      * @throws ISiomeApiError
      */
-    exportXML(
-        namespaceUris: string[],
-        includeMappings: boolean,
-        includeValues: boolean
-    ): Promise<string>;
+    exportXML(namespaceUris: string[], includeMappings: boolean, includeValues: boolean,
+              exportPath: string, exportName: string): Promise<void>;
+
+    /**
+     * Return the nodeset as a string created by the given namespace uris
+     * @category General
+     * @param namespaceUris The namespace uris to export
+     * @param includeMappings Should mappings be exported
+     * @param includeValues Should values be exported
+     * @throws ISiomeApiError
+     */
+    getNodesetAsString(namespaceUris: string[], includeMappings: boolean, includeValues: boolean): Promise<string>;
 
     /**
      * Load a namespace with a given path but without a dialog
@@ -500,13 +644,19 @@ export interface ISiomeApi {
      * Gets a list of open TIA-Portal projects
      * @category TIA Portal
      */
-    getListOfOpenProjectsInTIA(): Promise<string[]>
+    getListOfOpenProjectsInTIA(): Promise<string[]>;
 
     /**
      * Check if SiOME is currently attached to a TIA Portal project.
      * @category TIA Portal
      */
     isAttachedToTIA(): Promise<boolean>;
+
+    /**
+     * Check if SiOME is currently connected to a TIA Portal project.
+     * @category TIA Portal
+     */
+    isConnectedToTIA(): Promise<boolean>;
 
     /**
      * Get the current TIA Portal project path.
@@ -523,7 +673,7 @@ export interface ISiomeApi {
     /**
      * connect to a TIA Portal project.
      * @category TIA Portal
-     <    * @param attach {boolean} true is attach and false is open by using the path provided
+     * @param attach {boolean} true is attach and false is open by using the path provided
      * @param attach
      * @param disableTimeout
      * @param path {string} required when attach is false and multiple TIA instances are open
@@ -531,7 +681,14 @@ export interface ISiomeApi {
      * @param userName
      * @param password
      */
-    connectToTIAImplicit(attach: boolean, disableTimeout: boolean, path?: string, plcName?: string, userName?: string, password?:string ): Promise<void | IOpenProjectError>;
+    connectToTIAImplicit(
+        attach: boolean,
+        disableTimeout: boolean,
+        path?: string,
+        plcName?: string,
+        userName?: string,
+        password?: string
+    ): Promise<void | IOpenProjectError>;
 
     /**
      * Close the TIA Portal project attached in SiOME
@@ -604,6 +761,13 @@ export interface ISiomeApi {
         serverInterfaceName: string
     ): Promise<void>;
 
+    /**
+    * Load a node set from TIA.
+    * @category TIA Portal
+    * @param nodesetName
+    */
+    importFromTIA(nodesetName: string): Promise<void>;
+
     //#endregion
 
     //#region Validation Methods
@@ -623,6 +787,20 @@ export interface ISiomeApi {
      * @param nodeId
      */
     validateMappings(nodeId: string): Promise<Array<{ node: IOpcNode; conflict: string }>>;
+
+    /**
+     * Validate the nodeset with rules.
+     * @category Validation
+     * @param commonRules
+     * @param mappingRules
+     * @param addIns
+     * @param isOnline
+     */
+    validateNodeSet(commonRules: boolean,
+                    mappingRules: boolean,
+                    addIns: boolean,
+                    isOnline: boolean): Promise<IValidationConflict[]>
+
 
     //#endregion
 
@@ -715,13 +893,13 @@ export interface ISiomeApi {
     callMethod(methodNodeId: string, inputArguments: IOnlineMethodArguments[]): Promise<any>;
 
     /**
-     * Set the value of a online varibale
+     * Set the value of an online variable
      * @category Client
      * @param nodeId The node which value should be changed.
      * @param value The new value
      * @throws ISiomeApiError
      */
-    setOnlineVariableValue(nodeId: string, value: any): Promise<void>;
+    write(nodeId: string, value: any): Promise<void>
     //#endregion
 
     //#region PubSub Methods

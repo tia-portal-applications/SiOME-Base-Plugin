@@ -1,4 +1,4 @@
 export declare interface IQualifiedName {
-  namespaceIndex: number;
-  name: string;
+    namespaceIndex: number;
+    name: string;
 }

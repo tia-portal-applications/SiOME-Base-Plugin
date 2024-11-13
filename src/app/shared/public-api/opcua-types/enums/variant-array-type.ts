@@ -1,5 +1,5 @@
 export enum VariantArrayType {
-  Scalar,
-  Array,
-  Matrix,
+    Scalar,
+    Array,
+    Matrix
 }

@@ -1,5 +1,5 @@
 export enum BrowseOrAll {
-  ALL = 0,
-  BROWSE,
-  CANCEL,
+    ALL = 0,
+    BROWSE,
+    CANCEL
 }
