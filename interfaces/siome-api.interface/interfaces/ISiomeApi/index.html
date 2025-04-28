@@ -7887,7 +7887,7 @@ username: "myUsername"
 <h2 id="opc-ua">OPC UA</h2>
 <h3 id="activatetypereference">activateTypeReference()</h3>
 <blockquote>
-<p><strong>activateTypeReference</strong>(<code>sourceId</code>, <code>targetBrowseName</code>, <code>referenceType</code>?): <code>Promise</code>\&lt;<code>boolean</code>></p>
+<p><strong>activateTypeReference</strong>(<code>sourceId</code>, <code>targetBrowseName</code>, <code>referenceType?</code>): <code>Promise</code>\&lt;<code>boolean</code>></p>
 </blockquote>
 <p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/interfaces/siome-api.interface.ts#L47">interfaces/siome-api.interface.ts:47</a></p>
 <p>Activates or deactivates the type defined reference</p>
@@ -8685,7 +8685,7 @@ attributeId:20 options: boolean | string</p>
 <hr />
 <h3 id="connecttotiaimplicit">connectToTIAImplicit()</h3>
 <blockquote>
-<p><strong>connectToTIAImplicit</strong>(<code>attach</code>, <code>disableTimeout</code>, <code>path</code>?, <code>plcName</code>?, <code>userName</code>?, <code>password</code>?): <code>Promise</code>\&lt;<code>void</code> | <a href="../../../open-project-error.interface/interfaces/IOpenProjectError/"><code>IOpenProjectError</code></a>></p>
+<p><strong>connectToTIAImplicit</strong>(<code>attach</code>, <code>disableTimeout</code>, <code>path?</code>, <code>plcName?</code>, <code>userName?</code>, <code>password?</code>): <code>Promise</code>\&lt;<code>void</code> | <a href="../../../open-project-error.interface/interfaces/IOpenProjectError/"><code>IOpenProjectError</code></a>></p>
 </blockquote>
 <p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/interfaces/siome-api.interface.ts#L694">interfaces/siome-api.interface.ts:694</a></p>
 <p>connect to a TIA Portal project.</p>
@@ -8842,7 +8842,7 @@ attributeId:20 options: boolean | string</p>
 <hr />
 <h3 id="addbasiccontextmenu">addBasicContextMenu()</h3>
 <blockquote>
-<p><strong>addBasicContextMenu</strong>(<code>text</code>, <code>execute</code>, <code>disabled</code>?, <code>visible</code>?): <code>Promise</code>\&lt;<code>void</code>></p>
+<p><strong>addBasicContextMenu</strong>(<code>text</code>, <code>execute</code>, <code>disabled?</code>, <code>visible?</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 </blockquote>
 <p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/interfaces/siome-api.interface.ts#L417">interfaces/siome-api.interface.ts:417</a></p>
 <p>The method adds a context menu for each node in the information model.</p>
@@ -8862,7 +8862,7 @@ attributeId:20 options: boolean | string</p>
 <hr />
 <h3 id="addmappingcontextmenu">addMappingContextMenu()</h3>
 <blockquote>
-<p><strong>addMappingContextMenu</strong>(<code>text</code>, <code>execute</code>, <code>disabled</code>?, <code>visible</code>?): <code>Promise</code>\&lt;<code>void</code>></p>
+<p><strong>addMappingContextMenu</strong>(<code>text</code>, <code>execute</code>, <code>disabled?</code>, <code>visible?</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 </blockquote>
 <p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/interfaces/siome-api.interface.ts#L432">interfaces/siome-api.interface.ts:432</a></p>
 <p>The method adds a context menu in the mapping area for each node in the information model.</p>
@@ -8917,7 +8917,7 @@ attributeId:20 options: boolean | string</p>
 <hr />
 <h3 id="openselectdirectorydialog">openSelectDirectoryDialog()</h3>
 <blockquote>
-<p><strong>openSelectDirectoryDialog</strong>(<code>title</code>?): <code>Promise</code>\&lt;<code>string</code>></p>
+<p><strong>openSelectDirectoryDialog</strong>(<code>title?</code>): <code>Promise</code>\&lt;<code>string</code>></p>
 </blockquote>
 <p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/interfaces/siome-api.interface.ts#L407">interfaces/siome-api.interface.ts:407</a></p>
 <p>Open a dialog in SiOME to select a directory.</p>
@@ -8932,7 +8932,7 @@ attributeId:20 options: boolean | string</p>
 <hr />
 <h3 id="openselectfiledialog">openSelectFileDialog()</h3>
 <blockquote>
-<p><strong>openSelectFileDialog</strong>(<code>defaultPath</code>?, <code>fileExtension</code>?, <code>multiSelect</code>?): <code>Promise</code>\&lt;<code>string</code>[]></p>
+<p><strong>openSelectFileDialog</strong>(<code>defaultPath?</code>, <code>fileExtension?</code>, <code>multiSelect?</code>): <code>Promise</code>\&lt;<code>string</code>[]></p>
 </blockquote>
 <p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/interfaces/siome-api.interface.ts#L455">interfaces/siome-api.interface.ts:455</a></p>
 <p>Open a dialog in SiOME to select one or multiple file(s).</p>
