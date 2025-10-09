@@ -10,26 +10,26 @@
       
       
       
-      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
-        <title>INodeId - Getting started with SiOME plugin development</title>
+        <title>ISiOMESettings - Getting started with SiOME plugin development</title>
       
     
     
 
   
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.eebd395e.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
     
-  <link rel="stylesheet" href="../../../../../assets/stylesheets/code-main.bc82b6e239.css"/>
+  <link rel="stylesheet" href="../../../../assets/stylesheets/code-main.bc82b6e239.css"/>
 
 
     
@@ -44,7 +44,7 @@
   
 
     
-    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#interface-inodeid" class="md-skip">
+        <a href="#interface-isiomesettings" class="md-skip">
           Skip to content
         </a>
       
@@ -187,7 +187,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
           Home
         </a>
     </li>
@@ -212,7 +212,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../preparations/" class="md-tabs__link">
+      <a href="../../../../preparations/" class="md-tabs__link">
           Getting Started
         </a>
     </li>
@@ -237,7 +237,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../interfaces/interfaces_siome_api_interface.ISiomeApi/" class="md-tabs__link">
+      <a href="../../../interfaces_siome_api_interface.ISiomeApi/" class="md-tabs__link">
           API Documentation
         </a>
     </li>
@@ -432,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -446,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../used_software/" class="md-nav__link">
+      <a href="../../../../used_software/" class="md-nav__link">
         Used Software
       </a>
     </li>
@@ -460,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../FAQ/" class="md-nav__link">
+      <a href="../../../../FAQ/" class="md-nav__link">
         FAQ
       </a>
     </li>
@@ -474,7 +474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../further_information/" class="md-nav__link">
+      <a href="../../../../further_information/" class="md-nav__link">
         Further Information
       </a>
     </li>
@@ -525,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../preparations/" class="md-nav__link">
+      <a href="../../../../preparations/" class="md-nav__link">
         Preparation of the development environment
       </a>
     </li>
@@ -539,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../setup_project/" class="md-nav__link">
+      <a href="../../../../setup_project/" class="md-nav__link">
         Setting up your Project
       </a>
     </li>
@@ -553,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../using_the_api/" class="md-nav__link">
+      <a href="../../../../using_the_api/" class="md-nav__link">
         Using the SiOME API
       </a>
     </li>
@@ -604,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../interfaces/interfaces_siome_api_interface.ISiomeApi/" class="md-nav__link">
+      <a href="../../../interfaces_siome_api_interface.ISiomeApi/" class="md-nav__link">
         API functions
       </a>
     </li>
@@ -618,7 +618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../modules/" class="md-nav__link">
+      <a href="../../../../modules/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -664,18 +664,6 @@
 
 
 <li class="md-nav__item">
-  <a href="#extended-by" title="Extended by" class="md-nav__link md-nav__link--primary">
-    Extended by
-  </a>
-
-  
-  
-</li>
-      
-        
-
-
-<li class="md-nav__item">
   <a href="#properties" title="Properties" class="md-nav__link md-nav__link--primary">
     Properties
   </a>
@@ -689,8 +677,8 @@
 
 
 <li class="md-nav__item">
-  <a href="#identifiertype" title="identifierType" class="md-nav__link">
-    identifierType
+  <a href="#actualnodechildrenamountonline" title="actualNodeChildrenAmountOnline" class="md-nav__link">
+    actualNodeChildrenAmountOnline
   </a>
 
   
@@ -701,8 +689,8 @@
 
 
 <li class="md-nav__item">
-  <a href="#namespace" title="namespace" class="md-nav__link">
-    namespace
+  <a href="#checkcyclesonimport" title="checkCyclesOnImport" class="md-nav__link">
+    checkCyclesOnImport
   </a>
 
   
@@ -713,25 +701,152 @@
 
 
 <li class="md-nav__item">
-  <a href="#value" title="value" class="md-nav__link">
-    value
+  <a href="#connectedserveraddresses" title="connectedServerAddresses" class="md-nav__link">
+    connectedServerAddresses
   </a>
 
   
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        
+          
 
 
 <li class="md-nav__item">
-  <a href="#methods" title="Methods" class="md-nav__link md-nav__link--primary">
-    Methods
+  <a href="#defaultdelimiternodeid" title="defaultDelimiterNodeId" class="md-nav__link">
+    defaultDelimiterNodeId
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#defaultnodeidtype" title="defaultNodeIdType" class="md-nav__link">
+    defaultNodeIdType
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#defaultplaceholder" title="defaultPlaceholder" class="md-nav__link">
+    defaultPlaceholder
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#defaultpostfixnodeid" title="defaultPostfixNodeId" class="md-nav__link">
+    defaultPostfixNodeId
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#defaultprefixnodeid" title="defaultPrefixNodeId" class="md-nav__link">
+    defaultPrefixNodeId
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#defaultstartnodeids" title="defaultStartNodeIds" class="md-nav__link">
+    defaultStartNodeIds
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#defaultvaluerank" title="defaultValueRank" class="md-nav__link">
+    defaultValueRank
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#disableanimations" title="disableAnimations" class="md-nav__link">
+    disableAnimations
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#isloggingenabled" title="isLoggingEnabled" class="md-nav__link">
+    isLoggingEnabled
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#logdebugmessages" title="logDebugMessages" class="md-nav__link">
+    logDebugMessages
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#logdirectory" title="logDirectory" class="md-nav__link">
+    logDirectory
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#mainwindowsettings" title="mainWindowSettings" class="md-nav__link">
+    mainWindowSettings
   </a>
 
   
@@ -743,21 +858,56 @@
 
 
 <li class="md-nav__item">
-  <a href="#tostring" title="toString()" class="md-nav__link">
-    toString()
+  <a href="#height" title="height" class="md-nav__link">
+    height
   </a>
 
   
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           
 
 
 <li class="md-nav__item">
-  <a href="#returns" title="Returns" class="md-nav__link">
-    Returns
+  <a href="#ismaximized" title="isMaximized" class="md-nav__link">
+    isMaximized
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#width" title="width" class="md-nav__link">
+    width
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#x" title="x" class="md-nav__link">
+    x
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#y" title="y" class="md-nav__link">
+    y
   </a>
 
   
@@ -766,6 +916,198 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#pluginsfolder" title="pluginsFolder" class="md-nav__link">
+    pluginsFolder
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#postfixdatatype" title="postfixDataType" class="md-nav__link">
+    postfixDataType
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#postfixobjecttype" title="postfixObjectType" class="md-nav__link">
+    postfixObjectType
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#postfixvariabletype" title="postfixVariableType" class="md-nav__link">
+    postfixVariableType
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#prefixdatatype" title="prefixDataType" class="md-nav__link">
+    prefixDataType
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#prefixobjecttype" title="prefixObjectType" class="md-nav__link">
+    prefixObjectType
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#prefixvariabletype" title="prefixVariableType" class="md-nav__link">
+    prefixVariableType
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#selectednodechildrenamountoffline" title="selectedNodeChildrenAmountOffline" class="md-nav__link">
+    selectedNodeChildrenAmountOffline
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#selectednodechildrenamountonline" title="selectedNodeChildrenAmountOnline" class="md-nav__link">
+    selectedNodeChildrenAmountOnline
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#selectednodechildrenamountonlinedisabled" title="selectedNodeChildrenAmountOnlineDisabled" class="md-nav__link">
+    selectedNodeChildrenAmountOnlineDisabled
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#selectednodelimitnamespaceglobal" title="selectedNodeLimitNamespaceGlobal" class="md-nav__link">
+    selectedNodeLimitNamespaceGlobal
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#showdatatypesforvariablesinopctree" title="showDataTypesForVariablesInOpcTree" class="md-nav__link">
+    showDataTypesForVariablesInOpcTree
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#showdisplayname" title="showDisplayName" class="md-nav__link">
+    showDisplayName
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#sortnodesalphabeticalinopctree" title="sortNodesAlphabeticalInOpcTree" class="md-nav__link">
+    sortNodesAlphabeticalInOpcTree
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#sortorderstatemachine" title="sortOrderStateMachine" class="md-nav__link">
+    sortOrderStateMachine
+  </a>
+
+  
+  
+</li>
+        
+          
+
+
+<li class="md-nav__item">
+  <a href="#validateagainstschema" title="validateAgainstSchema" class="md-nav__link">
+    validateAgainstSchema
+  </a>
+
+  
   
 </li>
         
@@ -791,41 +1133,217 @@
                   
 
 
-<p><a href="../../../../README.md"><strong>siome-base-plugin</strong></a></p>
+<p><a href="../../../README.md"><strong>siome-base-plugin</strong></a></p>
 <hr />
-<p><a href="../../../../../modules/">siome-base-plugin</a> / <a href="../../">opcua-types/interfaces/node-id.interface</a> / INodeId</p>
-<h1 id="interface-inodeid">Interface: INodeId</h1>
-<p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/opcua-types/interfaces/node-id.interface.ts#L3">opcua-types/interfaces/node-id.interface.ts:3</a></p>
-<h2 id="extended-by">Extended by</h2>
-<ul>
-<li><a href="../../../expanded-node-id.interface/interfaces/IExpandedNodeId/"><code>IExpandedNodeId</code></a></li>
-</ul>
+<p><a href="../../../../modules/">siome-base-plugin</a> / <a href="../../">interfaces/siome-settings.interface</a> / ISiOMESettings</p>
+<h1 id="interface-isiomesettings">Interface: ISiOMESettings</h1>
+<p>Defined in: interfaces/siome-settings.interface.ts:1</p>
 <h2 id="properties">Properties</h2>
-<h3 id="identifiertype">identifierType</h3>
+<h3 id="actualnodechildrenamountonline">actualNodeChildrenAmountOnline</h3>
 <blockquote>
-<p><strong>identifierType</strong>: <a href="../../../../enums/node-id-type/enumerations/NodeIdType/"><code>NodeIdType</code></a></p>
+<p><strong>actualNodeChildrenAmountOnline</strong>: <code>number</code></p>
 </blockquote>
-<p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/opcua-types/interfaces/node-id.interface.ts#L4">opcua-types/interfaces/node-id.interface.ts:4</a></p>
+<p>Defined in: interfaces/siome-settings.interface.ts:2</p>
 <hr />
-<h3 id="namespace">namespace</h3>
+<h3 id="checkcyclesonimport">checkCyclesOnImport</h3>
 <blockquote>
-<p><strong>namespace</strong>: <code>number</code></p>
+<p><strong>checkCyclesOnImport</strong>: <code>boolean</code></p>
 </blockquote>
-<p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/opcua-types/interfaces/node-id.interface.ts#L6">opcua-types/interfaces/node-id.interface.ts:6</a></p>
+<p>Defined in: interfaces/siome-settings.interface.ts:3</p>
 <hr />
-<h3 id="value">value</h3>
+<h3 id="connectedserveraddresses">connectedServerAddresses</h3>
 <blockquote>
-<p><strong>value</strong>: <code>string</code> | <code>number</code></p>
+<p><strong>connectedServerAddresses</strong>: <code>string</code>[]</p>
 </blockquote>
-<p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/opcua-types/interfaces/node-id.interface.ts#L5">opcua-types/interfaces/node-id.interface.ts:5</a></p>
-<h2 id="methods">Methods</h2>
-<h3 id="tostring">toString()</h3>
+<p>Defined in: interfaces/siome-settings.interface.ts:4</p>
+<hr />
+<h3 id="defaultdelimiternodeid">defaultDelimiterNodeId</h3>
 <blockquote>
-<p><strong>toString</strong>(): <code>string</code></p>
+<p><strong>defaultDelimiterNodeId</strong>: <code>string</code></p>
 </blockquote>
-<p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/bcea9e0260ec7ca3c31d2db12e7cedf0acda0693/src/app/shared/public-api/opcua-types/interfaces/node-id.interface.ts#L7">opcua-types/interfaces/node-id.interface.ts:7</a></p>
-<h4 id="returns">Returns</h4>
-<p><code>string</code></p>
+<p>Defined in: interfaces/siome-settings.interface.ts:9</p>
+<hr />
+<h3 id="defaultnodeidtype">defaultNodeIdType</h3>
+<blockquote>
+<p><strong>defaultNodeIdType</strong>: <code>number</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:7</p>
+<hr />
+<h3 id="defaultplaceholder">defaultPlaceholder</h3>
+<blockquote>
+<p><strong>defaultPlaceholder</strong>: <code>number</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:6</p>
+<hr />
+<h3 id="defaultpostfixnodeid">defaultPostfixNodeId</h3>
+<blockquote>
+<p><strong>defaultPostfixNodeId</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:10</p>
+<hr />
+<h3 id="defaultprefixnodeid">defaultPrefixNodeId</h3>
+<blockquote>
+<p><strong>defaultPrefixNodeId</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:8</p>
+<hr />
+<h3 id="defaultstartnodeids">defaultStartNodeIds</h3>
+<blockquote>
+<p><strong>defaultStartNodeIds</strong>: <code>any</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:11</p>
+<hr />
+<h3 id="defaultvaluerank">defaultValueRank</h3>
+<blockquote>
+<p><strong>defaultValueRank</strong>: <code>number</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:5</p>
+<hr />
+<h3 id="disableanimations">disableAnimations</h3>
+<blockquote>
+<p><strong>disableAnimations</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:33</p>
+<hr />
+<h3 id="isloggingenabled">isLoggingEnabled</h3>
+<blockquote>
+<p><strong>isLoggingEnabled</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:18</p>
+<hr />
+<h3 id="logdebugmessages">logDebugMessages</h3>
+<blockquote>
+<p><strong>logDebugMessages</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:20</p>
+<hr />
+<h3 id="logdirectory">logDirectory</h3>
+<blockquote>
+<p><strong>logDirectory</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:19</p>
+<hr />
+<h3 id="mainwindowsettings">mainWindowSettings</h3>
+<blockquote>
+<p><strong>mainWindowSettings</strong>: <code>object</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:21</p>
+<h4 id="height">height</h4>
+<blockquote>
+<p><strong>height</strong>: <code>number</code></p>
+</blockquote>
+<h4 id="ismaximized">isMaximized</h4>
+<blockquote>
+<p><strong>isMaximized</strong>: <code>boolean</code></p>
+</blockquote>
+<h4 id="width">width</h4>
+<blockquote>
+<p><strong>width</strong>: <code>number</code></p>
+</blockquote>
+<h4 id="x">x</h4>
+<blockquote>
+<p><strong>x</strong>: <code>number</code></p>
+</blockquote>
+<h4 id="y">y</h4>
+<blockquote>
+<p><strong>y</strong>: <code>number</code></p>
+</blockquote>
+<hr />
+<h3 id="pluginsfolder">pluginsFolder</h3>
+<blockquote>
+<p><strong>pluginsFolder</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:23</p>
+<hr />
+<h3 id="postfixdatatype">postfixDataType</h3>
+<blockquote>
+<p><strong>postfixDataType</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:17</p>
+<hr />
+<h3 id="postfixobjecttype">postfixObjectType</h3>
+<blockquote>
+<p><strong>postfixObjectType</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:13</p>
+<hr />
+<h3 id="postfixvariabletype">postfixVariableType</h3>
+<blockquote>
+<p><strong>postfixVariableType</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:15</p>
+<hr />
+<h3 id="prefixdatatype">prefixDataType</h3>
+<blockquote>
+<p><strong>prefixDataType</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:16</p>
+<hr />
+<h3 id="prefixobjecttype">prefixObjectType</h3>
+<blockquote>
+<p><strong>prefixObjectType</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:12</p>
+<hr />
+<h3 id="prefixvariabletype">prefixVariableType</h3>
+<blockquote>
+<p><strong>prefixVariableType</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:14</p>
+<hr />
+<h3 id="selectednodechildrenamountoffline">selectedNodeChildrenAmountOffline</h3>
+<blockquote>
+<p><strong>selectedNodeChildrenAmountOffline</strong>: <code>number</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:24</p>
+<hr />
+<h3 id="selectednodechildrenamountonline">selectedNodeChildrenAmountOnline</h3>
+<blockquote>
+<p><strong>selectedNodeChildrenAmountOnline</strong>: <code>number</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:25</p>
+<hr />
+<h3 id="selectednodechildrenamountonlinedisabled">selectedNodeChildrenAmountOnlineDisabled</h3>
+<blockquote>
+<p><strong>selectedNodeChildrenAmountOnlineDisabled</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:26</p>
+<hr />
+<h3 id="selectednodelimitnamespaceglobal">selectedNodeLimitNamespaceGlobal</h3>
+<blockquote>
+<p><strong>selectedNodeLimitNamespaceGlobal</strong>: <code>number</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:27</p>
+<hr />
+<h3 id="showdatatypesforvariablesinopctree">showDataTypesForVariablesInOpcTree</h3>
+<blockquote>
+<p><strong>showDataTypesForVariablesInOpcTree</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:28</p>
+<hr />
+<h3 id="showdisplayname">showDisplayName</h3>
+<blockquote>
+<p><strong>showDisplayName</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:31</p>
+<hr />
+<h3 id="sortnodesalphabeticalinopctree">sortNodesAlphabeticalInOpcTree</h3>
+<blockquote>
+<p><strong>sortNodesAlphabeticalInOpcTree</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:29</p>
+<hr />
+<h3 id="sortorderstatemachine">sortOrderStateMachine</h3>
+<blockquote>
+<p><strong>sortOrderStateMachine</strong>: <code>string</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:30</p>
+<hr />
+<h3 id="validateagainstschema">validateAgainstSchema</h3>
+<blockquote>
+<p><strong>validateAgainstSchema</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Defined in: interfaces/siome-settings.interface.ts:32</p>
 
 
 
@@ -918,10 +1436,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.footer", "page.toc", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.footer", "page.toc", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
     
   </body>
