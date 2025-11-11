@@ -1,4 +1,4 @@
-import { NodeClass } from "../enums/node-classes";
+import {NodeClass} from "../enums/node-classes";
 
 export interface IAddNodeParameter {
     name: string;

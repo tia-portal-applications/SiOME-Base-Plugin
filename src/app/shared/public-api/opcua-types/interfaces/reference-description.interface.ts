@@ -1,8 +1,8 @@
-import { NodeClass } from "../../enums/node-classes";
-import { IExpandedNodeId } from "./expanded-node-id.interface";
-import { ILocalizedText } from "./localized-text.interface";
-import { INodeId } from "./node-id.interface";
-import { IQualifiedName } from "./qualified-name.interface";
+import {NodeClass} from "../../enums/node-classes";
+import {IExpandedNodeId} from "./expanded-node-id.interface";
+import {ILocalizedText} from "./localized-text.interface";
+import {INodeId} from "./node-id.interface";
+import {IQualifiedName} from "./qualified-name.interface";
 
 export declare interface IReferenceDescription {
     dataTypeNodeId: IExpandedNodeId;

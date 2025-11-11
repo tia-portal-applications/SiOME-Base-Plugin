@@ -1,4 +1,4 @@
-import { NamespaceChangeType } from "../enums/namespace-change-type";
+import {NamespaceChangeType} from "../enums/namespace-change-type";
 
 export interface INamespaceChange {
     type: NamespaceChangeType;

@@ -1,4 +1,4 @@
-import { AttributeId } from "../enums/attribute-ids";
+import {AttributeId} from "../enums/attribute-ids";
 
 export interface IBaseAttributeData {
     attributeId: AttributeId;

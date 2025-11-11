@@ -1,5 +1,5 @@
-import { IExpandedNodeId } from "../opcua-types/interfaces/expanded-node-id.interface";
-import { IReferenceDescription } from "../opcua-types/interfaces/reference-description.interface";
+import {IExpandedNodeId} from "../opcua-types/interfaces/expanded-node-id.interface";
+import {IReferenceDescription} from "../opcua-types/interfaces/reference-description.interface";
 
 export declare interface IBrowseResult {
     possibleFields: string[];

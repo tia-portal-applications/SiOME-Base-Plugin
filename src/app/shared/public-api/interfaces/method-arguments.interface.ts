@@ -1,4 +1,4 @@
-import { ILocalizedText } from "../opcua-types/interfaces/localized-text.interface";
+import {ILocalizedText} from "../opcua-types/interfaces/localized-text.interface";
 
 export interface IMethodArguments {
     name: string;

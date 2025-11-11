@@ -1,4 +1,4 @@
-import { INodeId } from "./node-id.interface";
+import {INodeId} from "./node-id.interface";
 
 export declare interface IExpandedNodeId extends INodeId {
     nullExpandedNodeId: IExpandedNodeId;

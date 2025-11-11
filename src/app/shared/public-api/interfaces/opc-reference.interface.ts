@@ -1,5 +1,5 @@
-import { ModellingRules } from "../enums/modelling-rules";
-import { INodeId } from "../opcua-types/interfaces/node-id.interface";
+import {ModellingRules} from "../enums/modelling-rules";
+import {INodeId} from "../opcua-types/interfaces/node-id.interface";
 
 export interface IOpcReference {
     readonly isActive: boolean;

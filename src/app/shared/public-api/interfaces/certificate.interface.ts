@@ -1,4 +1,4 @@
-export interface IEndpointCertificate {
+export interface ICertificate {
     issuerCommonName: string;
     issuerCountryName: string;
     issuerLocalityName: string;

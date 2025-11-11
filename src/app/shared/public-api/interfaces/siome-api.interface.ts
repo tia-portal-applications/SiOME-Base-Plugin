@@ -1,36 +1,43 @@
-import { SupportedFileFormat } from "../enums/supported-file-format";
-import { ModellingRules } from "../enums/modelling-rules";
-import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { INamespaceChange } from "./namespace-change.interface";
-import { IImportFile } from "./import-file.interface";
-import { IConnectParams } from "./connect-params.interface";
-import { BrowseOrAll } from "../enums/browse-or-all";
-import { AttributeId } from "../enums/attribute-ids";
-import { ITiaNode } from "./tia-node.interface";
-import { IOpcReference } from "./opc-reference.interface";
-import { IProjectNode } from "./project-node.interface";
-import { IOpcNode } from "./opc-node.interface";
-import { IEndpoint } from "./endpoint.interface";
-import { IReadResult } from "./read-result.interface";
-import { IBrowseResult } from "./browse-result.interface";
-import { IBaseAttributeData } from "./base-attribute-data.interface";
-import { IQualifiedName } from "../opcua-types/interfaces/qualified-name.interface";
-import { ILocalizedText } from "../opcua-types/interfaces/localized-text.interface";
-import { IAddStructurItemParameter } from "./add-structure-item-parameter.interface";
-import { IMethodArguments } from "./method-arguments.interface";
-import { ISchemas } from "./schemas.interface";
-import { IOnlineMethodArguments } from "./online-method-arguments.interface";
-import { NamespaceAttributeId } from "../enums/namespace-attribute-ids";
-import { IAddVariableParameter } from "./add-variable-parameter";
-import { IAddVariableTypeParameter } from "./add-variable-type-parameter";
-import { IAddObjectParameter } from "./add-object-parameter";
-import { IAddObjectTypeParameter } from "./add-object-type-parameter";
-import { IAddReferenceTypeParameter } from "./add-reference-type-parameter";
-import { IAddDataTypeParameter } from "./add-data-type-parameter";
-import { ArgumentType } from "../enums/argument-type";
-import { IOpenProjectError } from "./open-project-error.interface";
+import {SupportedFileFormat} from "../enums/supported-file-format";
+import {ModellingRules} from "../enums/modelling-rules";
+import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
+import {INamespaceChange} from "./namespace-change.interface";
+import {IImportFile} from "./import-file.interface";
+import {IConnectParams} from "./connect-params.interface";
+import {BrowseOrAll} from "../enums/browse-or-all";
+import {AttributeId} from "../enums/attribute-ids";
+import {ITiaNode} from "./tia-node.interface";
+import {IOpcReference} from "./opc-reference.interface";
+import {IProjectNode} from "./project-node.interface";
+import {IEndpoint} from "./endpoint.interface";
+import {IReadResult} from "./read-result.interface";
+import {IBrowseResult} from "./browse-result.interface";
+import {IBaseAttributeData} from "./base-attribute-data.interface";
+import {IQualifiedName} from "../opcua-types/interfaces/qualified-name.interface";
+import {ILocalizedText} from "../opcua-types/interfaces/localized-text.interface";
+import {IAddStructurItemParameter} from "./add-structure-item-parameter.interface";
+import {IMethodArguments} from "./method-arguments.interface";
+import {ISchemas} from "./schemas.interface";
+import {IOnlineMethodArguments} from "./online-method-arguments.interface";
+import {NamespaceAttributeId} from "../enums/namespace-attribute-ids";
+import {IAddVariableParameter} from "./add-variable-parameter";
+import {IAddVariableTypeParameter} from "./add-variable-type-parameter";
+import {IAddObjectParameter} from "./add-object-parameter";
+import {IAddObjectTypeParameter} from "./add-object-type-parameter";
+import {IAddReferenceTypeParameter} from "./add-reference-type-parameter";
+import {IAddDataTypeParameter} from "./add-data-type-parameter";
+import {ArgumentType} from "../enums/argument-type";
+import {IOpenProjectError} from "./open-project-error.interface";
 import {IAddEnumeration} from "./add-enumeration";
-import { IValidationConflict } from "./validation-conflict.interface";
+import {IValidationConflict} from "./validation-conflict.interface";
+import {ICertificate} from "./certificate.interface";
+import {IOpcNode} from "./opc-node.interface";
+import {IGdsSubjectInterface} from "./gds-subject.interface";
+import {IGdsPushCertificateInterface} from "./gds-push-certificate.interface";
+import {ITrustListDataType} from "./trustlist-data-type.interface";
+import {ISiOMESettings} from "./siome-settings.interface";
+import {ICallMethodResult} from "./call-method-result.interface";
+
 
 export interface ISiomeApi {
     //#region OPC UA Methods
@@ -40,11 +47,10 @@ export interface ISiomeApi {
      * @category OPC UA
      * @param sourceId The NodeId of the source of the TypeReference
      * @param targetBrowseName
-     * @param referenceType  The NodeId of the ReferenceType of the TypeReference
      * @returns the status of the isActivated property
      * @throws ISiomeApiError
      */
-    activateTypeReference(sourceId: string, targetBrowseName: string, referenceType?: string): Promise<boolean>;
+    activateTypeReference(sourceId: string, targetBrowseName: string): Promise<boolean>;
 
     /**
      * Return a string array containing the current namespace uris
@@ -104,22 +110,22 @@ export interface ISiomeApi {
     /**
      * Change the order of the namespaces.
      * @category OPC UA
-     * @param newNamespaceOrder The uris in the new order seperated by "," (e.g.: "http://ns2, http://ns1")
+     * @param newNamespaceOrder The uris in the new order separated by "," (e.g.: "http://ns2, http://ns1")
      */
-    changeNamespaceOrder(newNamespaceOrder: string): Promise<void>
+    changeNamespaceOrder(newNamespaceOrder: string): Promise<void>;
 
     /**
      * Check the dependencies between namespaces.
      * @category OPC UA
      */
-    checkDependencies(): Promise<IProjectNode[]>
+    checkDependencies(): Promise<IProjectNode[]>;
 
     /**
      * Show how many nodes a namespace has.
      * @category OPC UA
      * @param namespaceUri
      */
-    countNumberOfNodes(namespaceUri: string): Promise<number>
+    countNumberOfNodes(namespaceUri: string): Promise<number>;
 
     /**
      * @param parentId The NodeId of the DataType.
@@ -183,7 +189,12 @@ export interface ISiomeApi {
      * @returns The newly created IOpcReference.
      * @throws ISiomeApiError
      */
-    addReference(sourceId: string, targetId: string, referenceTypeId: string, isForward: boolean): Promise<IOpcReference>;
+    addReference(
+        sourceId: string,
+        targetId: string,
+        referenceTypeId: string,
+        isForward: boolean
+    ): Promise<IOpcReference>;
 
     /**
      * Remove a reference. If it is the last hierarchical reference to the target node, the node will be deleted.
@@ -194,6 +205,12 @@ export interface ISiomeApi {
      * @throws ISiomeApiError
      */
     removeReference(sourceId: string, targetId: string, referenceTypeId: string): Promise<void>;
+
+    /**
+     * Get Type Defined References
+     * @category OPC UA
+     */
+    getTypeReferences(nodeId: string): Promise<IOpcReference[]>;
 
     /**
      * Delete a node.
@@ -323,6 +340,7 @@ export interface ISiomeApi {
      * attributeId:18 options: string | number
      * attributeId:19 options: string | number
      * attributeId:20 options: boolean | string
+     * @throws ISiomeApiError
      */
     setAttribute(
         attributeId: AttributeId,
@@ -541,7 +559,8 @@ export interface ISiomeApi {
      * }
      * ```
      */
-    getSiOMESettings(): Promise<any>;
+
+    getSiOMESettings(): Promise<ISiOMESettings>;
 
     /**
      * The setting for sorting the nodes alphabetically.
@@ -576,7 +595,7 @@ export interface ISiomeApi {
      * @param val
      * @throws ISiomeApiError
      */
-    validateUANodeSet(val: boolean): Promise<void>
+    validateUANodeSet(val: boolean): Promise<void>;
 
     /**
      * The setting for selecting default placeholder value at nodes.
@@ -584,7 +603,7 @@ export interface ISiomeApi {
      * @param defaultPlaceholder
      * @throws ISiomeApiError
      */
-    startValueForPlaceholder(defaultPlaceholder: number): Promise<void>
+    startValueForPlaceholder(defaultPlaceholder: number): Promise<void>;
 
     /**
      * The setting for the maximum allowed nodes in the project.
@@ -592,7 +611,7 @@ export interface ISiomeApi {
      * @param maxNodeLimit
      * @throws ISiomeApiError
      */
-    changeMaxNodeLimit(maxNodeLimit: number): Promise<void>
+    changeMaxNodeLimit(maxNodeLimit: number): Promise<void>;
 
     /**
      * The method  closes the SiOME.
@@ -617,8 +636,13 @@ export interface ISiomeApi {
      * @param exportName Name of the exported file
      * @throws ISiomeApiError
      */
-    exportXML(namespaceUris: string[], includeMappings: boolean, includeValues: boolean,
-              exportPath: string, exportName: string): Promise<void>;
+    exportXML(
+        namespaceUris: string[],
+        includeMappings: boolean,
+        includeValues: boolean,
+        exportPath: string,
+        exportName: string
+    ): Promise<void>;
 
     /**
      * Return the nodeset as a string created by the given namespace uris
@@ -762,10 +786,10 @@ export interface ISiomeApi {
     ): Promise<void>;
 
     /**
-    * Load a node set from TIA.
-    * @category TIA Portal
-    * @param nodesetName
-    */
+     * Load a node set from TIA.
+     * @category TIA Portal
+     * @param nodesetName
+     */
     importFromTIA(nodesetName: string): Promise<void>;
 
     //#endregion
@@ -786,7 +810,7 @@ export interface ISiomeApi {
      * @category Validation
      * @param nodeId
      */
-    validateMappings(nodeId: string): Promise<Array<{ node: IOpcNode; conflict: string }>>;
+    validateMappings(nodeId: string): Promise<{ node: IOpcNode; conflict: string }[]>;
 
     /**
      * Validate the nodeset with rules.
@@ -796,11 +820,12 @@ export interface ISiomeApi {
      * @param addIns
      * @param isOnline
      */
-    validateNodeSet(commonRules: boolean,
-                    mappingRules: boolean,
-                    addIns: boolean,
-                    isOnline: boolean): Promise<IValidationConflict[]>
-
+    validateNodeSet(
+        commonRules: boolean,
+        mappingRules: boolean,
+        addIns: boolean,
+        isOnline: boolean
+    ): Promise<IValidationConflict[]>;
 
     //#endregion
 
@@ -890,7 +915,7 @@ export interface ISiomeApi {
      * @param inputArguments
      * @throws ISiomeApiError
      */
-    callMethod(methodNodeId: string, inputArguments: IOnlineMethodArguments[]): Promise<any>;
+    callMethod(methodNodeId: string, inputArguments: IOnlineMethodArguments[]): Promise<ICallMethodResult[]>;
 
     /**
      * Set the value of an online variable
@@ -899,7 +924,7 @@ export interface ISiomeApi {
      * @param value The new value
      * @throws ISiomeApiError
      */
-    write(nodeId: string, value: any): Promise<void>
+    write(nodeId: string, value: any): Promise<void>;
     //#endregion
 
     //#region PubSub Methods
@@ -994,7 +1019,7 @@ export interface ISiomeApi {
     /**
      * Add Pubsub Subscriber Dataset from Published XML Path
      * @category PubSub
-     * @param fileNames The XML Path oft teh Published Dataset
+     * @param fileNames The XML Path of the Published Dataset
      */
     addPubSubAvailablePublishedDataset(fileNames: string[]): Promise<void>;
 
@@ -1015,5 +1040,177 @@ export interface ISiomeApi {
      * @category PubSub
      */
     updateNamespaceZero(): Promise<void>;
+
+    //#endregion
+
+
+
+    //#region GDS Methods
+
+    /**
+     * Load GDS certificate
+     * @category GDS Push
+     */
+    loadGds(): Promise<void>
+
+    /**
+     * Read TrustList
+     * @category GDS Push
+     */
+    readTrustList(): Promise<ITrustListDataType>
+
+    /**
+     * Get current server certificate
+     * @category GDS Push
+     */
+    getCurrentServerCertificate(): ICertificate;
+
+    /**
+     * save Binary File
+     * @category General
+     * @param data
+     * @param filePath
+     */
+    save(data: Uint8Array, filePath: string): Promise<void>;
+
+    /**
+     * decode Certificate to Text
+     * @category GDS Push
+     * @param certificate
+     */
+    decodeCertificate(certificate: Uint8Array): Promise<string>;
+
+    /**
+     * decode RevocationList to Text
+     * @category GDS Push
+     * @param revocationList
+     */
+    decodeRevocationList(revocationList: Uint8Array): Promise<string>;
+
+    /**
+     * Create certificate
+     * @category GDS Push
+     * @param certificatePath
+     * @param subjectConfig
+     * @param certificateConfig
+     */
+    createCertificate(
+        certificatePath: string,
+        subjectConfig: IGdsSubjectInterface,
+        certificateConfig: IGdsPushCertificateInterface) : Promise<void>;
+
+    /**
+     * Request CSR
+     * @category GDS Push
+     * @param destinationFolder
+     * @param fileName
+     * @param subjectConfig
+     */
+    requestCSR(
+        destinationFolder: string,
+        fileName: string,
+        subjectConfig: IGdsSubjectInterface
+    ) : Promise<void>;
+
+    /**
+     * Add Trust List Entry
+     * @category GDS Push
+     * @param path
+     * @param issuer
+     */
+    addTrustListEntryAndApplyTrustListChanges(path: string, issuer: boolean): Promise<void>;
+
+    /**
+     * Remove Trust List Entry
+     * @category GDS Push
+     * @param index
+     * @param issuer
+     */
+    removeTrustListEntryAndApplyTrustListChanges(index: number, issuer: boolean): Promise<void>;
+
+    /**
+     * Add Revocation List
+     * @category GDS Push
+     * @param path
+     * @param issuer
+     */
+    addNewRevocationListAndApplyTrustListChanges(path: string, issuer: boolean): Promise<void>;
+
+    /**
+     * Remove Revocation List
+     * @category GDS Push
+     * @param index
+     * @param issuer
+     */
+    removeRevocationListAndApplyTrustListChanges(index: number, issuer: boolean): Promise<void>;
+
+    /**
+     * Apply Trust List Changes
+     * @category GDS Push
+     */
+    applyTrustListChanges(): Promise<void>;
+
+    /**
+     * Push certificate to server
+     * @category GDS Push
+     * @warning ⚠️ This will disconnect you from the server
+     * @param certificatePath
+     * @param privateKeyPath
+     */
+    downloadAndApplyChanges(certificatePath: string, privateKeyPath: string): Promise<void>;
+
+    /**
+     * Get Available ManagedApplications
+     * @category GDS Push
+     */
+    getAvailableManagedApplications(): IOpcNode[];
+
+    /**
+     * Get Selected ManagedApplication
+     * @category GDS Push
+     */
+    getSelectedManagedApplication(): IOpcNode;
+
+    /**
+     * Select ManagedApplication
+     * @category GDS Push
+     * @param managedApplicationId
+     */
+    selectManagedApplication(managedApplicationId: string): Promise<void>;
+
+    /**
+     * Deselect ManagedApplication
+     * @category GDS Push
+    */
+    deselectManagedApplication(): Promise<void>;
+
+    /**
+     * Get Available CertificateGroups
+     * @category GDS Push
+     */
+    getAvailableCertificateGroups(): IOpcNode[];
+
+    /**
+     * Select CertificateGroup
+     * @category GDS Push
+     * @param certificateGroupId
+     */
+    selectCertificateGroup(certificateGroupId: string): Promise<void>;
+
+    /**
+     * Get Selected CertificateGroup
+     * @category GDS Push
+     */
+    getSelectedCertificateGroup(): IOpcNode;
+
+    /**
+     * Register Application Simple
+     * @category GDS Pull
+     * @param applicationName
+     * @param applicationUri
+     */
+    registerApplicationSimple(applicationName?: string, applicationUri?: string): Promise<void>;
+
+
     //#endregion
 }

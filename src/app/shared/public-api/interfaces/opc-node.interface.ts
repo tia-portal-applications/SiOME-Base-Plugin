@@ -1,9 +1,9 @@
-import { MappingState } from "../enums/mapping-state";
-import { IOpcReference } from "./opc-reference.interface";
-import { ISpecialNodeClasses } from "./special-node-classes.interface";
-import { NodeClass } from "../enums/node-classes";
-import { INodeId } from "../opcua-types/interfaces/node-id.interface";
-import { IQualifiedName } from "../opcua-types/interfaces/qualified-name.interface";
+import {MappingState} from "../enums/mapping-state";
+import {IOpcReference} from "./opc-reference.interface";
+import {ISpecialNodeClasses} from "./special-node-classes.interface";
+import {NodeClass} from "../enums/node-classes";
+import {INodeId} from "../opcua-types/interfaces/node-id.interface";
+import {IQualifiedName} from "../opcua-types/interfaces/qualified-name.interface";
 
 export interface IOpcNode {
     readonly id: string;
