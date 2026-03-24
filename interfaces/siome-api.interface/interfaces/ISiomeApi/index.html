@@ -9165,8 +9165,8 @@ username: "myUsername"
 <p>sets the provided namespace index or namespaceUri as current namespace</p>
 <h5 id="parameters_18">Parameters</h5>
 <h6 id="namespace">namespace</h6>
-<p>namespace index or namespaceUri</p>
 <p><code>string</code> | <code>number</code></p>
+<p>namespace index or namespaceUri</p>
 <h5 id="returns_31">Returns</h5>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <hr />
@@ -9520,7 +9520,7 @@ username: "myUsername"
 <p><strong>lockNamespace</strong>(<code>namespaceUri</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 </blockquote>
 <p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/03efac294d4ef0bffd5964a9aa89f17d738ae635/src/app/shared/public-api/interfaces/siome-api.interface.ts#L101">interfaces/siome-api.interface.ts:101</a></p>
-<p>Unlock a namespace.</p>
+<p>Lock a namespace.</p>
 <h5 id="parameters_32">Parameters</h5>
 <h6 id="namespaceuri_1">namespaceUri</h6>
 <p><code>string</code></p>
@@ -9532,7 +9532,7 @@ username: "myUsername"
 <p><strong>unlockNamespace</strong>(<code>namespaceUri</code>): <code>Promise</code>\&lt;<code>void</code>></p>
 </blockquote>
 <p>Defined in: <a href="https://github.com/tia-portal-applications/SiOME-Base-Plugin/blob/03efac294d4ef0bffd5964a9aa89f17d738ae635/src/app/shared/public-api/interfaces/siome-api.interface.ts#L108">interfaces/siome-api.interface.ts:108</a></p>
-<p>Lock a namespace.</p>
+<p>Unlock a namespace.</p>
 <h5 id="parameters_33">Parameters</h5>
 <h6 id="namespaceuri_2">namespaceUri</h6>
 <p><code>string</code></p>
@@ -9646,8 +9646,8 @@ username: "myUsername"
 <p><code>string</code></p>
 <p>Add the new entry below this parent node.</p>
 <h6 id="params_1">params</h6>
-<p>The parameters for the newly created node.</p>
 <p><a href="../../../add-variable-parameter/interfaces/IAddVariableParameter/"><code>IAddVariableParameter</code></a> | <a href="../../../add-variable-type-parameter/interfaces/IAddVariableTypeParameter/"><code>IAddVariableTypeParameter</code></a> | <a href="../../../add-object-parameter/interfaces/IAddObjectParameter/"><code>IAddObjectParameter</code></a> | <a href="../../../add-object-type-parameter/interfaces/IAddObjectTypeParameter/"><code>IAddObjectTypeParameter</code></a> | <a href="../../../add-reference-type-parameter/interfaces/IAddReferenceTypeParameter/"><code>IAddReferenceTypeParameter</code></a> | <a href="../../../add-data-type-parameter/interfaces/IAddDataTypeParameter/"><code>IAddDataTypeParameter</code></a> | <a href="../../../add-enumeration/interfaces/IAddEnumeration/"><code>IAddEnumeration</code></a></p>
+<p>The parameters for the newly created node.</p>
 <h5 id="returns_64">Returns</h5>
 <p><code>Promise</code>\&lt;<a href="../../../opc-reference.interface/interfaces/IOpcReference/"><code>IOpcReference</code></a>></p>
 <p>The newly created IOpcReference or SiOMEApiError.</p>
@@ -9906,6 +9906,7 @@ username: "myUsername"
 <p><code>string</code></p>
 <p>The nodeId whose properties need to be set.</p>
 <h6 id="options">options</h6>
+<p><code>string</code> | <code>number</code> | <code>boolean</code> | <code>number</code>[] | <a href="../../../../opcua-types/interfaces/localized-text.interface/interfaces/ILocalizedText/"><code>ILocalizedText</code></a> | <a href="../../../../opcua-types/interfaces/qualified-name.interface/interfaces/IQualifiedName/"><code>IQualifiedName</code></a></p>
 <p>The required options to set the attribute
 attributeId:1  options: string
 attributeId:3  options: IQualifiedName | string (e.g. 1:Name)
@@ -9920,7 +9921,6 @@ attributeId:17 options: string | number
 attributeId:18 options: string | number
 attributeId:19 options: string | number
 attributeId:20 options: boolean | string</p>
-<p><code>string</code> | <code>number</code> | <code>boolean</code> | <code>number</code>[] | <a href="../../../../opcua-types/interfaces/localized-text.interface/interfaces/ILocalizedText/"><code>ILocalizedText</code></a> | <a href="../../../../opcua-types/interfaces/qualified-name.interface/interfaces/IQualifiedName/"><code>IQualifiedName</code></a></p>
 <h5 id="returns_77">Returns</h5>
 <p><code>Promise</code>\&lt;<code>void</code>></p>
 <h5 id="throws_28">Throws</h5>
